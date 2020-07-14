@@ -16,8 +16,6 @@ export default function PassportEditor() {
     gender: '',
   });
 
-  console.log(details);
-
   useEffect(() => {
     dispatch(fetchAllCountries());
   }, [dispatch]);
@@ -32,6 +30,10 @@ export default function PassportEditor() {
         ))}
       </select>
     );
+  };
+
+  const submitPassport = () => {
+    console.log(details);
   };
 
   return (
@@ -98,6 +100,7 @@ export default function PassportEditor() {
           </form>
         </div>
       </div>
+      <button onClick={submitPassport}>Submit passport</button>
     </div>
   );
 }
