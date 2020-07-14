@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './PassportEditor.css';
 import image from '../img/img_passport.jpeg';
 
 export default function PassportEditor() {
-  const countries = ['kingdom of the netherlands', 'belgium', 'germany'];
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const fetchedData = await axios('https://restcountries.eu/rest/v2/all');
+      setCountries(fetchedData.data);
+    }
+    fetchData();
+  });
 
   const renderCountries = () => {
     return (
       <select>
         {countries.map((country, i) => (
           <option key={i} value={country}>
-            {country.toUpperCase()}
+            {country.name.toUpperCase()}
           </option>
         ))}
       </select>

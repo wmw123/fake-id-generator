@@ -14,7 +14,7 @@
   display: grid;
   grid-template-columns: repeat(3fr);
   grid-template-areas:
-    '. country country'
+    'country country country'
     'photo inputs inputs'
     'photo inputs inputs'
     '. inputs inputs';
@@ -22,6 +22,7 @@
 
 .header {
   grid-area: country;
+  justify-self: center;
 }
 
 .picture {
