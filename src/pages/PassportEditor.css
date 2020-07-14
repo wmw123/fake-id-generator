@@ -1,0 +1,40 @@
+.passport-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.passport__page--2 {
+  width: 50vw;
+  height: 30vw;
+  border: 1px solid orangered;
+  display: grid;
+  grid-template-columns: repeat(3fr);
+  grid-template-areas:
+    'country country country'
+    'photo inputs inputs'
+    'photo inputs inputs'
+    '. inputs inputs';
+}
+
+.header {
+  grid-area: country;
+  justify-self: center;
+}
+
+.picture {
+  grid-area: photo;
+}
+
+.input-form {
+  grid-area: inputs;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+}
