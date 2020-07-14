@@ -11,4 +11,19 @@
   width: 50vw;
   height: 30vw;
   border: 1px solid orangered;
+  display: grid;
+  grid-template-columns: 3fr;
+  grid-template-areas:
+    '. header header'
+    'photo inputs inputs'
+    'photo inputs inputs'
+    '. inputs inputs';
+}
+
+.header {
+  grid-area: header;
+}
+
+.picture {
+  grid-area: photo;
 }
