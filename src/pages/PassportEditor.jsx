@@ -16,7 +16,7 @@ export default function PassportEditor() {
     gender: '',
   });
 
-  console.log(countries);
+  console.log(details);
 
   useEffect(() => {
     dispatch(fetchAllCountries());
@@ -44,6 +44,7 @@ export default function PassportEditor() {
           <form>
             <label>name</label> <br />
             <input
+              value={details.name}
               type="text"
               id="name"
               name="name"
@@ -51,16 +52,48 @@ export default function PassportEditor() {
             />
             <br />
             <label>given names</label> <br />
-            <input type="text" id="givenNames" name="givenNames" />
+            <input
+              value={details.givenNames}
+              type="text"
+              id="givenNames"
+              name="givenNames"
+              onChange={(e) =>
+                setDetails({ ...details, givenNames: e.target.value })
+              }
+            />
             <br />
             <label>date of birth</label> <br />
-            <input type="text" id="dateOfBirth" name="dateOfBirth" />
+            <input
+              value={details.dateOfBirth}
+              type="text"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              onChange={(e) =>
+                setDetails({ ...details, dateOfBirth: e.target.value })
+              }
+            />
             <br />
             <label>place of birth</label> <br />
-            <input type="text" id="placeOfBirth" name="placeOfBirth" />
+            <input
+              value={details.placeOfBirth}
+              type="text"
+              id="placeOfBirth"
+              name="placeOfBirth"
+              onChange={(e) =>
+                setDetails({ ...details, placeOfBirth: e.target.value })
+              }
+            />
             <br />
             <label>gender</label> <br />
-            <input type="text" id="gender" name="gender" />
+            <input
+              value={details.gender}
+              type="text"
+              id="gender"
+              name="gender"
+              onChange={(e) =>
+                setDetails({ ...details, gender: e.target.value })
+              }
+            />
             <br />
           </form>
         </div>
