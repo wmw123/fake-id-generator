@@ -2,4 +2,13 @@
   width: 100vw;
   height: 100vh;
   background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.passport__page--2 {
+  width: 50vw;
+  height: 30vw;
+  border: 1px solid orangered;
 }
