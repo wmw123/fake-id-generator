@@ -1,5 +1,6 @@
-import React from "react";
+import React from 'react';
+import './PassportEditor.css';
 
 export default function PassportEditor() {
-  return <div>Passport Editor</div>;
+  return <div class="passport-container">passport</div>;
 }
