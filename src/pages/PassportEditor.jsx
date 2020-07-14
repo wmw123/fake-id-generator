@@ -22,7 +22,24 @@ export default function PassportEditor() {
       <div className="passport__page--2">
         <div className="header">{renderCountries()}</div>
         <img className="picture" src={image} alt="passport" />
-        passport
+
+        <div className="input-form">
+          <label>name</label> <br />
+          <input type="text" id="name" name="name" />
+          <br />
+          <label>given names</label> <br />
+          <input type="text" id="givenName" name="givenName" />
+          <br />
+          <label>date of birth</label> <br />
+          <input type="text" id="dateOfBirth" name="dateOfBirth" />
+          <br />
+          <label>place of birth</label> <br />
+          <input type="text" id="placeOfBirth" name="placeOfBirth" />
+          <br />
+          <label>gender</label> <br />
+          <input type="text" id="gender" name="gender" />
+          <br />
+        </div>
       </div>
     </div>
   );
