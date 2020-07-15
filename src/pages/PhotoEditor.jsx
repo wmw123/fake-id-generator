@@ -126,14 +126,19 @@ export default function PhotoEditor() {
     console.log("NEW FEATURE:", newFeature);
 
     if (image === "empty") {
-      console.log(image + " happened");
+      console.log(image + " value");
       document.body.removeChild(oldFeature);
+    } else if (oldFeature) {
+      document.body.replaceChild(newFeature, oldFeature);
+      const index = imgArray.indexOf(oldFeature);
+      if (index !== -1) {
+        imgArray[index] = newFeature;
+      }
+      console.log("replaced", imgArray);
     } else {
-      oldFeature
-        ? document.body.replaceChild(newFeature, oldFeature)
-        : document.body.appendChild(newFeature);
+      document.body.appendChild(newFeature);
       set_imgArray([...imgArray, image]);
-      console.log(imgArray);
+      console.log("added", imgArray);
     }
   };
 
