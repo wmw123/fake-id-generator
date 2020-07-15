@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import mergeImages from "merge-images";
 import "./attributes.css";
 
 import portrait from "../images/portrait.jpg";
@@ -40,6 +41,8 @@ import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
 export default function PhotoEditor() {
+  const [imgArray, set_imgArray] = useState([portrait]);
+
   const leftEyeData = {
     name: "left eye",
     coordinates: { x: 10, y: 15 },
@@ -122,9 +125,16 @@ export default function PhotoEditor() {
 
     console.log("NEW FEATURE:", newFeature);
 
-    oldFeature
-      ? document.body.replaceChild(newFeature, oldFeature)
-      : document.body.appendChild(newFeature);
+    if (image === "empty") {
+      console.log(image + " happened");
+      document.body.removeChild(oldFeature);
+    } else {
+      oldFeature
+        ? document.body.replaceChild(newFeature, oldFeature)
+        : document.body.appendChild(newFeature);
+      set_imgArray([...imgArray, image]);
+      console.log(imgArray);
+    }
   };
 
   const dropDownMaker = (featureData) => {
@@ -141,10 +151,14 @@ export default function PhotoEditor() {
             );
           }}
         >
+          {/* option to not have any features */}
+          <option key={0} value="empty">
+            Nothing
+          </option>
           {featureData.featureArray.map((image, index) => {
             return (
               <option
-                key={index}
+                key={index + 1}
                 value={image}
                 style={{ backgroundImage: `url(${image})` }}
               >
