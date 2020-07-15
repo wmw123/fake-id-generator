@@ -21,8 +21,8 @@ function WebcamCapture() {
       <div>
         <Webcam
           videoConstraints={videoConstraints}
-          width={480}
-          height={400}
+          width={300}
+          height={450}
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
@@ -30,7 +30,15 @@ function WebcamCapture() {
         />
         <button onClick={capture}>Capture photo</button>
       </div>
-      <div>{imageSrc && <img src={imageSrc} alt="" />}</div>
+      <div>
+        {imageSrc && (
+          <img
+            src={imageSrc}
+            alt="a screenshot of your face"
+            style={{ width: 300, height: 450 }}
+          />
+        )}
+      </div>
     </div>
   );
 }
