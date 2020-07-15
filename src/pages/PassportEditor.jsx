@@ -108,14 +108,14 @@ export default function PassportEditor() {
   };
 
   return (
-    <div className="passport-container">
-      <div ref={componentRef}>
+    <div className="passport-container" ref={componentRef}>
+      <div>
         <div
           className={
             !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
           }
         >
-          <div className={!passportOpen ? 'cover' : 'cover-rotate'}>
+          <div className={passportOpen ? 'cover-rotate' : 'cover'}>
             <figure className="front"></figure>
           </div>
           <div className="details">
@@ -127,23 +127,24 @@ export default function PassportEditor() {
           </div>
         </div>
       </div>
+      <div className="btn-wrapper">
+        <button className="edit-btn" onClick={openPassport}>
+          Edit passport
+        </button>
 
-      <button className="edit-btn" onClick={openPassport}>
-        Edit passport
-      </button>
-
-      <button
-        className="jpeg-btn"
-        onClick={() => exportComponentAsJPEG(componentRef)}
-      >
-        Export As JPEG
-      </button>
-      <button
-        className="pdf-btn"
-        onClick={() => exportComponentAsPDF(componentRef)}
-      >
-        Export As PDF
-      </button>
+        <button
+          className="jpeg-btn"
+          onClick={() => exportComponentAsJPEG(componentRef)}
+        >
+          Export As JPEG
+        </button>
+        <button
+          className="pdf-btn"
+          onClick={() => exportComponentAsPDF(componentRef)}
+        >
+          Export As PDF
+        </button>
+      </div>
     </div>
   );
 }
