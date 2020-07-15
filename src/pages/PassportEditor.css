@@ -131,10 +131,16 @@ button {
 .edit-btn {
   position: absolute;
   right: 2rem;
+  bottom: 10rem;
+}
+
+.jpeg-btn {
+  position: absolute;
+  right: 2rem;
   bottom: 6rem;
 }
 
-.submit-btn {
+.pdf-btn {
   position: absolute;
   right: 2rem;
   bottom: 2rem;

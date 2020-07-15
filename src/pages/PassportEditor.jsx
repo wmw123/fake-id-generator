@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  exportComponentAsJPEG,
+  exportComponentAsPDF,
+} from 'react-component-export-image';
 import { fetchAllCountries } from '../store/countries/actions';
 import { selectCountries } from '../store/countries/selectors';
 import './PassportEditor.css';
 import image from '../img/img_passport.jpeg';
 
 export default function PassportEditor() {
+  const componentRef = useRef();
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
   const [passportOpen, setPassportOpen] = useState(false);
@@ -104,27 +109,40 @@ export default function PassportEditor() {
 
   return (
     <div className="passport-container">
-      <div
-        className={
-          !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
-        }
-      >
-        <div className={!passportOpen ? 'cover' : 'cover-rotate'}>
-          <figure className="front"></figure>
-        </div>
-        <div className="details">
-          <div className="header">{countries ? renderCountries() : null}</div>
-          <div className="input-wrapper">
-            <img className="picture" src={image} alt="passport" />
-            {renderForm()}
+      <div ref={componentRef}>
+        <div
+          className={
+            !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
+          }
+        >
+          <div className={!passportOpen ? 'cover' : 'cover-rotate'}>
+            <figure className="front"></figure>
+          </div>
+          <div className="details">
+            <div className="header">{countries ? renderCountries() : null}</div>
+            <div className="input-wrapper">
+              <img className="picture" src={image} alt="passport" />
+              {renderForm()}
+            </div>
           </div>
         </div>
       </div>
+
       <button className="edit-btn" onClick={openPassport}>
         Edit passport
       </button>
-      <button className="submit-btn" onClick={submitPassport}>
-        Download passport
+
+      <button
+        className="jpeg-btn"
+        onClick={() => exportComponentAsJPEG(componentRef)}
+      >
+        Export As JPEG
+      </button>
+      <button
+        className="pdf-btn"
+        onClick={() => exportComponentAsPDF(componentRef)}
+      >
+        Export As PDF
       </button>
     </div>
   );
