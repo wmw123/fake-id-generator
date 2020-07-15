@@ -124,7 +124,7 @@ export default function PassportEditor() {
         Edit passport
       </button>
       <button className="submit-btn" onClick={submitPassport}>
-        Submit passport
+        Download passport
       </button>
     </div>
   );
