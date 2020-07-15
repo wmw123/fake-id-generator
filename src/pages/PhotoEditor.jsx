@@ -41,15 +41,17 @@ import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
 export default function PhotoEditor() {
-  const [imgArray, set_imgArray] = useState([portrait]);
+  const [imgArray, set_imgArray] = useState([
+    { name: "portrait", src: portrait },
+  ]);
 
   const leftEyeData = {
-    name: "left eye",
+    name: "leftEye",
     coordinates: { x: 10, y: 15 },
     featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
   };
   const leftEyebrowData = {
-    name: "left eyebrow",
+    name: "leftEyebrow",
     coordinates: { x: 10, y: 10 },
     featureArray: [
       leftEyebrow1,
@@ -60,12 +62,12 @@ export default function PhotoEditor() {
     ],
   };
   const rightEyeData = {
-    name: "right eye",
+    name: "rightEye",
     coordinates: { x: 40, y: 15 },
     featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
   };
   const rightEyebrowData = {
-    name: "right eyebrow",
+    name: "rightEyebrow",
     coordinates: { x: 40, y: 10 },
     featureArray: [
       rightEyebrow1,
@@ -86,58 +88,73 @@ export default function PhotoEditor() {
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
-  const placeFeature = (image, name, x, y) => {
+  const placeFeature = (image, nameId, x, y) => {
     const portrait = document.getElementById("portraitImage");
-    const oldFeature = document.getElementById(name);
+    const oldFeature = document.getElementById(nameId);
 
-    console.log("ARGUMENTS", "featureImg:", image, "x:", x, "y:", y);
+    console.log(
+      "ARGUMENTS",
+      "featureImg:",
+      image,
+      "name:",
+      nameId,
+      "x:",
+      x,
+      "y:",
+      y
+    );
 
-    console.log("OLD FEATURE", oldFeature);
+    // console.log("OLD FEATURE", oldFeature);
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
     const w = portrait.width;
     const h = portrait.height;
 
-    console.log(
-      "PORTRAIT DATA",
-      "left:",
-      l,
-      "top:",
-      t,
-      "width:",
-      w,
-      "height:",
-      h
-    );
+    // console.log(
+    //   "PORTRAIT DATA",
+    //   "left:",
+    //   l,
+    //   "top:",
+    //   t,
+    //   "width:",
+    //   w,
+    //   "height:",
+    //   h
+    // );
 
     const newFeature = document.createElement("img");
 
     // use dynamic "feature" argument here
     newFeature.setAttribute("src", image);
-    newFeature.setAttribute("id", name);
+    newFeature.setAttribute("id", nameId);
     newFeature.setAttribute("class", "overlays");
 
     // use dynamic "x" and "y" coordinates arguments here
     newFeature.style.top = t + y + "px";
     newFeature.style.left = l + x + "px";
-    // set_testState(newFeature);
-
-    console.log("NEW FEATURE:", newFeature);
 
     if (image === "empty") {
-      console.log(image + " value");
       document.body.removeChild(oldFeature);
+      const index = imgArray.findIndex((img) => {
+        return img.name === nameId;
+      });
+      if (index !== -1) {
+        imgArray.splice(index);
+      }
+      console.log("removed", index, imgArray);
     } else if (oldFeature) {
       document.body.replaceChild(newFeature, oldFeature);
-      const index = imgArray.indexOf(oldFeature);
+      const index = imgArray.findIndex((img) => {
+        return img.name === nameId;
+      });
       if (index !== -1) {
-        imgArray[index] = newFeature;
+        imgArray[index] = { name: nameId, src: image, x, y };
       }
-      console.log("replaced", imgArray);
+      console.log("replaced", index, imgArray);
     } else {
       document.body.appendChild(newFeature);
-      set_imgArray([...imgArray, image]);
+      set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
       console.log("added", imgArray);
     }
   };
@@ -156,7 +173,6 @@ export default function PhotoEditor() {
             );
           }}
         >
-          {/* option to not have any features */}
           <option key={0} value="empty">
             Nothing
           </option>
@@ -176,6 +192,13 @@ export default function PhotoEditor() {
     );
   };
 
+  const createPhoto = () => {
+    mergeImages(imgArray).then(
+      (b64) => (document.querySelector("img").src = b64)
+      // send to redux store
+    );
+  };
+
   return (
     <>
       <div>PhotoEditor</div>
@@ -191,6 +214,7 @@ export default function PhotoEditor() {
       {dropDownMaker(rightEyeData)}
       {dropDownMaker(noseData)}
       {dropDownMaker(mouthData)}
+      <button onClick={createPhoto} />
     </>
   );
 }
