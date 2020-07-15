@@ -6,35 +6,136 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Sriracha', cursive;
+  color: #00728f;
+}
+
+input,
+select {
+  font-family: inherit;
+  border: 1px solid #4cc3e0;
+  border-radius: 3px;
+  color: #00728f;
+}
+
+input:focus,
+select:focus {
+  outline: none;
 }
 
 .passport__page--2 {
-  width: 50vw;
-  height: 30vw;
-  border: 1px solid orangered;
-  display: grid;
-  grid-template-columns: repeat(3fr);
-  grid-template-areas:
-    'country country country'
-    'photo inputs inputs'
-    'photo inputs inputs'
-    '. inputs inputs';
+  width: 23rem;
+  height: 33rem;
+  border: 2px solid #4cc3e0;
+  background-color: #83d0e4;
+  border-radius: 10px;
+  position: relative;
+  perspective: 1000px;
+  transition: all 1s ease-in-out;
+}
+
+.details {
+  height: 23rem;
+  width: 33rem;
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 5rem;
+  left: -4rem;
+  z-index: -1;
 }
 
 .header {
-  grid-area: country;
-  justify-self: center;
+  margin: 0.5rem 1rem;
+}
+
+.header select {
+  margin: auto;
+  width: 31rem;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-around;
 }
 
 .picture {
-  grid-area: photo;
+  width: 175px;
+  height: 225px;
+  margin-top: 2rem;
+  border-radius: 4px;
+  border: 2px solid #4cc3e0;
 }
 
-.input-form {
-  grid-area: inputs;
+.cover {
+  width: 98%;
+  height: 100%;
+  position: absolute;
+  left: 2%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #4cc3e0;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 0.5s ease-in;
 }
 
+.cover-rotate {
+  width: 98%;
+  height: 100%;
+  position: absolute;
+  left: 2%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #4cc3e0;
+  transform: rotateY(-120deg);
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 0.5s ease-in;
+}
+
+.passport__page--2-rotate {
+  width: 23rem;
+  height: 33rem;
+  border: 2px solid #4cc3e0;
+  background-color: #83d0e4;
+  border-radius: 10px;
+  position: relative;
+  perspective: 1000px;
+  transform: rotate(90deg);
+  transition: all 1s ease-in-out;
+}
+
+figure {
+  margin: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  display: block;
+}
+
+figure.front {
+  background: url('../img/world.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* BUTTONS */
 button {
-  padding: 0.5rem 1rem;
-  margin: 1rem;
+  width: 8rem;
+  padding: 0.5rem;
+  margin: 2rem 1rem;
+}
+
+.edit-btn {
+  position: absolute;
+  right: 2rem;
+  bottom: 6rem;
+}
+
+.submit-btn {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
 }

@@ -83,6 +83,7 @@ export default function PhotoEditor() {
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
+
   const placeFeature = (image, name, x, y) => {
     const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(name);
@@ -90,6 +91,7 @@ export default function PhotoEditor() {
     console.log("ARGUMENTS", "featureImg:", image, "x:", x, "y:", y);
 
     console.log("OLD FEATURE", oldFeature);
+
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
@@ -172,6 +174,7 @@ export default function PhotoEditor() {
       {dropDownMaker(rightEyeData)}
       {dropDownMaker(noseData)}
       {dropDownMaker(mouthData)}
+
     </>
   );
 }
