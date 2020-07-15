@@ -2,15 +2,10 @@ import React from "react";
 
 import "./attributes.css";
 import portrait from "../images/portrait.jpg";
-import eye from "../images/eye.png";
+import mouth from "../images/mouth.png";
 
 export default function PhotoEditor() {
-  console.log("WIDTH: 300, HEIGHT: 400");
-
-  const x = 20;
-
-  const placeEye = () => {
-    console.log("CLICK");
+  const placeFeature = (/*feature(mouth), x, y */) => {
     const portrait = document.getElementById("portraitImage");
 
     const l = portrait.offsetLeft;
@@ -18,29 +13,67 @@ export default function PhotoEditor() {
     const w = portrait.width;
     const h = portrait.height;
 
-    console.log("DATA", l, t, w, h);
+    console.log(
+      "PORTRAIT DATA",
+      "left:",
+      l,
+      "top:",
+      t,
+      "width:",
+      w,
+      "height:",
+      h
+    );
 
-    const newEye = document.createElement("img");
+    const newFeature = document.createElement("img");
 
-    newEye.style.position = "absolute";
-    newEye.setAttribute("src", eye);
-    newEye.setAttribute("class", "overlays");
+    // use dynamic feature argument here
+    newFeature.setAttribute("src", mouth);
+    newFeature.setAttribute("class", "overlays");
 
-    // newEye.style.display = "block";
-    // newEye.style.position = "relative";
-    newEye.style.height = "25px";
-    newEye.style.width = "50px";
-    newEye.style.top = t + "px";
-    newEye.style.left = l + "px";
+    // use dynamic x and y coordinates arguments here
+    newFeature.style.top = t + 50 + "px";
+    newFeature.style.left = l + "px";
 
-    document.body.appendChild(newEye);
+    document.body.appendChild(newFeature);
   };
+
+  const dropDownMaker = (array) => {
+    return (
+      <select
+        onChange={(event) => {
+          console.log("changed", event.target.value);
+        }}
+      >
+        {array.map((element) => {
+          return <option key={element.id}>{element.img}</option>;
+        })}
+      </select>
+    );
+  };
+
+  const array = [
+    {
+      id: 1,
+      img: "string1",
+    },
+    { id: 2, img: "string2" },
+    { id: 3, img: "string3" },
+  ];
 
   return (
     <>
       <div>PhotoEditor</div>
-      <button onClick={placeEye}>Click me</button>
-      <img id="portraitImage" src={portrait} alt={""} />
+      <button onClick={placeFeature} style={{ zIndex: -1 }}>
+        Click me
+      </button>
+      <img
+        id="portraitImage"
+        src={portrait}
+        style={{ position: "relative" }}
+        alt={""}
+      />
+      {dropDownMaker(array)}
     </>
   );
 }
