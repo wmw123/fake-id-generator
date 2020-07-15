@@ -83,13 +83,11 @@ export default function PhotoEditor() {
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
-  const [testState, set_testState] = useState(null);
-
   const placeFeature = (feature, x, y) => {
     const portrait = document.getElementById("portraitImage");
-
+    const oldFeature = document.getElementById(feature.name);
     console.log("ARGUMENTS", "featureImg:", feature, "x:", x, "y:", y);
-
+    console.log("OLD FEATURE", oldFeature);
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
     const w = portrait.width;
@@ -111,6 +109,7 @@ export default function PhotoEditor() {
 
     // use dynamic "feature" argument here
     newFeature.setAttribute("src", feature);
+    newFeature.setAttribute("id", feature.name);
     newFeature.setAttribute("class", "overlays");
 
     // use dynamic "x" and "y" coordinates arguments here
@@ -118,8 +117,10 @@ export default function PhotoEditor() {
     newFeature.style.left = l + x + "px";
     // set_testState(newFeature);
 
-    console.log(newFeature);
-    document.body.appendChild(newFeature);
+    console.log("NEW FEATURE:", newFeature);
+    oldFeature
+      ? document.body.replaceChild(newFeature, oldFeature)
+      : document.body.appendChild(newFeature);
   };
 
   const dropDownMaker = (featureData) => {
@@ -136,7 +137,11 @@ export default function PhotoEditor() {
           }}
         >
           {featureData.featureArray.map((feature, index) => {
-            return <option key={index} value={feature}></option>;
+            return (
+              <option key={index} value={feature}>
+                {index + 1}
+              </option>
+            );
           })}
         </select>
       </>
@@ -152,7 +157,6 @@ export default function PhotoEditor() {
         style={{ position: "relative" }}
         alt={""}
       />
-      {/* {testState} */}
       {dropDownMaker(leftEyeData)}
       {dropDownMaker(rightEyebrowData)}
       {dropDownMaker(rightEyeData)}
