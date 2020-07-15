@@ -1,8 +1,8 @@
 import React from "react";
-
 import "./attributes.css";
+
 import portrait from "../images/portrait.jpg";
-import mouth from "../images/mouth.png";
+import mouth2 from "../images/mouth/mouth2.png";
 
 export default function PhotoEditor() {
   const leftEyebrowData = {
@@ -33,7 +33,7 @@ export default function PhotoEditor() {
   const mouthData = {
     name: "mouth",
     coordinates: { x: 50, y: 25 },
-    featureArray: [mouth, mouth, mouth],
+    featureArray: [mouth2, mouth2, mouth2],
   };
 
   const placeFeature = (feature, x, y) => {
@@ -65,8 +65,8 @@ export default function PhotoEditor() {
     newFeature.setAttribute("class", "overlays");
 
     // use dynamic "x" and "y" coordinates arguments here
-    newFeature.style.top = t + 50 + "px";
-    newFeature.style.left = l + "px";
+    newFeature.style.top = t + y + "px";
+    newFeature.style.left = l + x + "px";
 
     document.body.appendChild(newFeature);
   };
