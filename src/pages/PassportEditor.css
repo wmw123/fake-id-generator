@@ -9,32 +9,100 @@
 }
 
 .passport__page--2 {
-  width: 50vw;
-  height: 30vw;
-  border: 1px solid orangered;
-  display: grid;
-  grid-template-columns: repeat(3fr);
-  grid-template-areas:
-    'country country country'
-    'photo inputs inputs'
-    'photo inputs inputs'
-    '. inputs inputs';
+  width: 30vw;
+  height: 73vh;
+  border: 2px solid #4cc3e0;
+  background-color: #83d0e4;
+  border-radius: 10px;
+  position: relative;
+  perspective: 1000px;
+  transition: all 1s ease-in-out;
+}
+
+.details {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 15vh;
+  left: -5vw;
+  z-index: -1;
+}
+
+.input-wrapper {
+  width: 70vh;
+  display: flex;
+  justify-content: space-around;
 }
 
 .header {
-  grid-area: country;
-  justify-self: center;
+  margin: 3rem;
 }
 
 .picture {
-  grid-area: photo;
-}
-
-.input-form {
-  grid-area: inputs;
+  width: 150px;
+  height: 200px;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  margin: 1rem;
+  width: 8rem;
+  padding: 0.5rem;
+  margin: 2rem 1rem;
+}
+
+.edit-btn {
+  position: absolute;
+  right: 2rem;
+  bottom: 6rem;
+}
+
+.submit-btn {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+}
+
+.cover {
+  width: 94%;
+  height: 100%;
+  position: absolute;
+  left: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #4cc3e0;
+  transform: rotateY(-20deg);
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 0.5s ease-in;
+}
+
+.passport__page--2:active .cover {
+  transform: rotateY(-120deg);
+}
+.passport__page--2:active {
+  transform: rotate(90deg);
+}
+
+.cover-rotate {
+  width: 94%;
+  height: 100%;
+  position: absolute;
+  left: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #4cc3e0;
+  transform: rotateY(-120deg);
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 0.5s ease-in;
+}
+
+.passport__page--2-rotate {
+  width: 30vw;
+  height: 73vh;
+  border: 2px solid #4cc3e0;
+  background-color: #83d0e4;
+  border-radius: 10px;
+  position: relative;
+  perspective: 1000px;
+  transform: rotate(90deg);
+  transition: all 1s ease-in-out;
 }
