@@ -13,7 +13,7 @@ export default function PassportEditor() {
   const componentRef = useRef();
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
-  const [passportOpen, setPassportOpen] = useState(false);
+  const [passportOpen, setPassportOpen] = useState(true);
   const [details, setDetails] = useState({
     name: '',
     givenNames: '',
@@ -108,8 +108,8 @@ export default function PassportEditor() {
   };
 
   return (
-    <div className="passport-container" ref={componentRef}>
-      <div>
+    <div className="passport-container">
+      <div ref={componentRef}>
         <div
           className={
             !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
