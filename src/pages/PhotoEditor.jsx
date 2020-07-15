@@ -1,46 +1,180 @@
-import React from 'react';
+import React, { useState } from "react";
+import "./attributes.css";
 
-import './attributes.css';
-import portrait from '../images/portrait.jpg';
-import eye from '../images/eye.png';
+import portrait from "../images/portrait.jpg";
+
+import leftEye1 from "../images/leftEye/leftEye1.png";
+import leftEye2 from "../images/leftEye/leftEye2.png";
+import leftEye3 from "../images/leftEye/leftEye3.png";
+import leftEye4 from "../images/leftEye/leftEye4.png";
+import leftEye5 from "../images/leftEye/leftEye5.png";
+
+import leftEyebrow1 from "../images/leftEyebrow/leftEyebrow1.png";
+import leftEyebrow2 from "../images/leftEyebrow/leftEyebrow2.png";
+import leftEyebrow3 from "../images/leftEyebrow/leftEyebrow3.png";
+import leftEyebrow4 from "../images/leftEyebrow/leftEyebrow4.png";
+import leftEyebrow5 from "../images/leftEyebrow/leftEyebrow5.png";
+
+import rightEye1 from "../images/rightEye/rightEye1.png";
+import rightEye2 from "../images/rightEye/rightEye2.png";
+import rightEye3 from "../images/rightEye/rightEye3.png";
+import rightEye4 from "../images/rightEye/rightEye4.png";
+import rightEye5 from "../images/rightEye/rightEye5.png";
+
+import rightEyebrow1 from "../images/rightEyebrow/rightEyebrow1.png";
+import rightEyebrow2 from "../images/rightEyebrow/rightEyebrow2.png";
+import rightEyebrow3 from "../images/rightEyebrow/rightEyebrow3.png";
+import rightEyebrow4 from "../images/rightEyebrow/rightEyebrow4.png";
+import rightEyebrow5 from "../images/rightEyebrow/rightEyebrow5.png";
+
+import nose1 from "../images/nose/nose1.png";
+import nose2 from "../images/nose/nose2.png";
+import nose3 from "../images/nose/nose3.png";
+import nose4 from "../images/nose/nose4.png";
+
+import mouth1 from "../images/mouth/mouth1.png";
+import mouth2 from "../images/mouth/mouth2.png";
+import mouth3 from "../images/mouth/mouth3.png";
+import mouth4 from "../images/mouth/mouth4.png";
+import mouth5 from "../images/mouth/mouth5.png";
+import mouth6 from "../images/mouth/mouth6.png";
 
 export default function PhotoEditor() {
-  console.log('WIDTH: 300, HEIGHT: 400');
+  const leftEyeData = {
+    name: "left eye",
+    coordinates: { x: 10, y: 15 },
+    featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
+  };
+  const leftEyebrowData = {
+    name: "left eyebrow",
+    coordinates: { x: 10, y: 10 },
+    featureArray: [
+      leftEyebrow1,
+      leftEyebrow2,
+      leftEyebrow3,
+      leftEyebrow4,
+      leftEyebrow5,
+    ],
+  };
+  const rightEyeData = {
+    name: "right eye",
+    coordinates: { x: 40, y: 15 },
+    featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
+  };
+  const rightEyebrowData = {
+    name: "right eyebrow",
+    coordinates: { x: 40, y: 10 },
+    featureArray: [
+      rightEyebrow1,
+      rightEyebrow2,
+      rightEyebrow3,
+      rightEyebrow4,
+      rightEyebrow5,
+    ],
+  };
+  const noseData = {
+    name: "nose",
+    coordinates: { x: 35, y: 35 },
+    featureArray: [nose1, nose2, nose3, nose4],
+  };
+  const mouthData = {
+    name: "mouth",
+    coordinates: { x: 50, y: 50 },
+    featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
+  };
 
-  const x = 20;
 
-  const placeEye = () => {
-    console.log('CLICK');
-    const portrait = document.getElementById('portraitImage');
+  const placeFeature = (image, name, x, y) => {
+    const portrait = document.getElementById("portraitImage");
+    const oldFeature = document.getElementById(name);
+
+    console.log("ARGUMENTS", "featureImg:", image, "x:", x, "y:", y);
+
+    console.log("OLD FEATURE", oldFeature);
+
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
     const w = portrait.width;
     const h = portrait.height;
 
-    console.log('DATA', l, t, w, h);
+    console.log(
+      "PORTRAIT DATA",
+      "left:",
+      l,
+      "top:",
+      t,
+      "width:",
+      w,
+      "height:",
+      h
+    );
 
-    const newEye = document.createElement('img');
+    const newFeature = document.createElement("img");
 
-    newEye.style.position = 'absolute';
-    newEye.setAttribute('src', eye);
-    newEye.setAttribute('class', 'overlays');
+    // use dynamic "feature" argument here
+    newFeature.setAttribute("src", image);
+    newFeature.setAttribute("id", name);
+    newFeature.setAttribute("class", "overlays");
 
-    // newEye.style.display = "block";
-    // newEye.style.position = "relative";
-    newEye.style.height = '25px';
-    newEye.style.width = '50px';
-    newEye.style.top = t + 'px';
-    newEye.style.left = l + 'px';
+    // use dynamic "x" and "y" coordinates arguments here
+    newFeature.style.top = t + y + "px";
+    newFeature.style.left = l + x + "px";
+    // set_testState(newFeature);
 
-    document.body.appendChild(newEye);
+    console.log("NEW FEATURE:", newFeature);
+
+    oldFeature
+      ? document.body.replaceChild(newFeature, oldFeature)
+      : document.body.appendChild(newFeature);
+  };
+
+  const dropDownMaker = (featureData) => {
+    return (
+      <>
+        <>{featureData.name}</>
+        <select
+          onChange={(event) => {
+            placeFeature(
+              event.target.value,
+              featureData.name,
+              featureData.coordinates.x,
+              featureData.coordinates.y
+            );
+          }}
+        >
+          {featureData.featureArray.map((image, index) => {
+            return (
+              <option
+                key={index}
+                value={image}
+                style={{ backgroundImage: `url(${image})` }}
+              >
+                {index + 1}
+              </option>
+            );
+          })}
+        </select>
+      </>
+    );
   };
 
   return (
     <>
       <div>PhotoEditor</div>
-      <button onClick={placeEye}>Click me</button>
-      <img id="portraitImage" src={portrait} alt={''} />
+      <img
+        id="portraitImage"
+        src={portrait}
+        style={{ position: "relative" }}
+        alt={""}
+      />
+      {dropDownMaker(leftEyebrowData)}
+      {dropDownMaker(leftEyeData)}
+      {dropDownMaker(rightEyebrowData)}
+      {dropDownMaker(rightEyeData)}
+      {dropDownMaker(noseData)}
+      {dropDownMaker(mouthData)}
+
     </>
   );
 }
