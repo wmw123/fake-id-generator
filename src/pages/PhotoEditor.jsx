@@ -79,15 +79,18 @@ export default function PhotoEditor() {
   };
   const mouthData = {
     name: "mouth",
-    coordinates: { x: 50, y: 25 },
+    coordinates: { x: 50, y: 50 },
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
-  const placeFeature = (feature, x, y) => {
+  const placeFeature = (image, name, x, y) => {
     const portrait = document.getElementById("portraitImage");
-    const oldFeature = document.getElementById(feature.name);
-    console.log("ARGUMENTS", "featureImg:", feature, "x:", x, "y:", y);
+    const oldFeature = document.getElementById(name);
+
+    console.log("ARGUMENTS", "featureImg:", image, "x:", x, "y:", y);
+
     console.log("OLD FEATURE", oldFeature);
+
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
     const w = portrait.width;
@@ -108,8 +111,8 @@ export default function PhotoEditor() {
     const newFeature = document.createElement("img");
 
     // use dynamic "feature" argument here
-    newFeature.setAttribute("src", feature);
-    newFeature.setAttribute("id", feature.name);
+    newFeature.setAttribute("src", image);
+    newFeature.setAttribute("id", name);
     newFeature.setAttribute("class", "overlays");
 
     // use dynamic "x" and "y" coordinates arguments here
@@ -118,6 +121,7 @@ export default function PhotoEditor() {
     // set_testState(newFeature);
 
     console.log("NEW FEATURE:", newFeature);
+
     oldFeature
       ? document.body.replaceChild(newFeature, oldFeature)
       : document.body.appendChild(newFeature);
@@ -131,14 +135,19 @@ export default function PhotoEditor() {
           onChange={(event) => {
             placeFeature(
               event.target.value,
+              featureData.name,
               featureData.coordinates.x,
               featureData.coordinates.y
             );
           }}
         >
-          {featureData.featureArray.map((feature, index) => {
+          {featureData.featureArray.map((image, index) => {
             return (
-              <option key={index} value={feature}>
+              <option
+                key={index}
+                value={image}
+                style={{ backgroundImage: `url(${image})` }}
+              >
                 {index + 1}
               </option>
             );
@@ -157,10 +166,10 @@ export default function PhotoEditor() {
         style={{ position: "relative" }}
         alt={""}
       />
+      {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(leftEyeData)}
       {dropDownMaker(rightEyebrowData)}
       {dropDownMaker(rightEyeData)}
-      {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(noseData)}
       {dropDownMaker(mouthData)}
     </>
