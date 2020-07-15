@@ -5,8 +5,41 @@ import portrait from "../images/portrait.jpg";
 import mouth from "../images/mouth.png";
 
 export default function PhotoEditor() {
-  const placeFeature = (/*feature(mouth), x, y */) => {
+  const leftEyebrowData = {
+    name: "left eyebrow",
+    coordinates: { x: 10, y: 10 },
+    featureArray: [],
+  };
+  const rightEyebrowData = {
+    name: "right eyebrow",
+    coordinates: { x: 40, y: 10 },
+    featureArray: [],
+  };
+  const leftEyeData = {
+    name: "left eye",
+    coordinates: { x: 10, y: 15 },
+    featureArray: [],
+  };
+  const rightEyeData = {
+    name: "right eye",
+    coordinates: { x: 40, y: 15 },
+    featureArray: [],
+  };
+  const noseData = {
+    name: "nose",
+    coordinates: { x: 35, y: 35 },
+    featureArray: [],
+  };
+  const mouthData = {
+    name: "mouth",
+    coordinates: { x: 50, y: 25 },
+    featureArray: [mouth, mouth, mouth],
+  };
+
+  const placeFeature = (feature, x, y) => {
     const portrait = document.getElementById("portraitImage");
+
+    console.log("ARGUMENTS", "featureImg:", feature, "x:", x, "y:", y);
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
@@ -27,53 +60,53 @@ export default function PhotoEditor() {
 
     const newFeature = document.createElement("img");
 
-    // use dynamic feature argument here
-    newFeature.setAttribute("src", mouth);
+    // use dynamic "feature" argument here
+    newFeature.setAttribute("src", feature);
     newFeature.setAttribute("class", "overlays");
 
-    // use dynamic x and y coordinates arguments here
+    // use dynamic "x" and "y" coordinates arguments here
     newFeature.style.top = t + 50 + "px";
     newFeature.style.left = l + "px";
 
     document.body.appendChild(newFeature);
   };
 
-  const dropDownMaker = (array) => {
+  const dropDownMaker = (featureData) => {
     return (
-      <select
-        onChange={(event) => {
-          console.log("changed", event.target.value);
-        }}
-      >
-        {array.map((element) => {
-          return <option key={element.id}>{element.img}</option>;
-        })}
-      </select>
+      <>
+        <>{featureData.name}</>
+        <select
+          onChange={(event) => {
+            placeFeature(
+              event.target.value,
+              featureData.coordinates.x,
+              featureData.coordinates.y
+            );
+          }}
+        >
+          {featureData.featureArray.map((feature, index) => {
+            return <option key={index} value={feature}></option>;
+          })}
+        </select>
+      </>
     );
   };
-
-  const array = [
-    {
-      id: 1,
-      img: "string1",
-    },
-    { id: 2, img: "string2" },
-    { id: 3, img: "string3" },
-  ];
 
   return (
     <>
       <div>PhotoEditor</div>
-      <button onClick={placeFeature} style={{ zIndex: -1 }}>
-        Click me
-      </button>
       <img
         id="portraitImage"
         src={portrait}
         style={{ position: "relative" }}
         alt={""}
       />
-      {dropDownMaker(array)}
+      {dropDownMaker(leftEyebrowData)}
+      {dropDownMaker(rightEyebrowData)}
+      {dropDownMaker(leftEyeData)}
+      {dropDownMaker(rightEyeData)}
+      {dropDownMaker(noseData)}
+      {dropDownMaker(mouthData)}
     </>
   );
 }
