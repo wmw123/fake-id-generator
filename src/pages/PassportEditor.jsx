@@ -109,7 +109,9 @@ export default function PassportEditor() {
           !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
         }
       >
-        <div className={!passportOpen ? 'cover' : 'cover-rotate'}></div>
+        <div className={!passportOpen ? 'cover' : 'cover-rotate'}>
+          <figure className="front"></figure>
+        </div>
         <div className="details">
           <div className="header">{countries ? renderCountries() : null}</div>
           <div className="input-wrapper">

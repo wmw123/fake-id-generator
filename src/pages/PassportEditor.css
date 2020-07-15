@@ -114,3 +114,18 @@ button {
   transform: rotate(90deg);
   transition: all 1s ease-in-out;
 }
+
+figure {
+  margin: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  display: block;
+}
+
+figure.front {
+  background: url('../img/world.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
