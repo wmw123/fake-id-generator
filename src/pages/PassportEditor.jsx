@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   exportComponentAsJPEG,
   exportComponentAsPDF,
-} from 'react-component-export-image';
-import { fetchAllCountries } from '../store/countries/actions';
-import { selectCountries } from '../store/countries/selectors';
-import { selectImgSrc } from '../store/photo/selectors';
-import './PassportEditor.css';
+} from "react-component-export-image";
+import { fetchAllCountries } from "../store/countries/actions";
+import { selectCountries } from "../store/countries/selectors";
+import { selectMergedImg } from "../store/photo/selectors";
+import "./PassportEditor.css";
 // import image from '../img/img_passport.jpeg';
 
 export default function PassportEditor() {
@@ -16,14 +16,14 @@ export default function PassportEditor() {
   const componentRef = useRef();
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
-  const photo = useSelector(selectImgSrc);
+  const photo = useSelector(selectMergedImg);
   const [passportOpen, setPassportOpen] = useState(true);
   const [details, setDetails] = useState({
-    name: '',
-    givenNames: '',
-    dateOfBirth: '',
-    placeOfBirth: '',
-    gender: '',
+    name: "",
+    givenNames: "",
+    dateOfBirth: "",
+    placeOfBirth: "",
+    gender: "",
   });
 
   useEffect(() => {
@@ -109,12 +109,12 @@ export default function PassportEditor() {
   return (
     <div className="passport-container">
       <div className="nav-btn">
-        <button className="webcam-btn" onClick={() => history.push('/')}>
+        <button className="webcam-btn" onClick={() => history.push("/")}>
           New picture
         </button>
         <button
           className="editor-btn"
-          onClick={() => history.push('/photoeditor')}
+          onClick={() => history.push("/photoeditor")}
         >
           Edit your picture
         </button>
@@ -122,10 +122,10 @@ export default function PassportEditor() {
       <div ref={componentRef}>
         <div
           className={
-            !passportOpen ? 'passport__page--2' : 'passport__page--2-rotate'
+            !passportOpen ? "passport__page--2" : "passport__page--2-rotate"
           }
         >
-          <div className={passportOpen ? 'cover-rotate' : 'cover'}>
+          <div className={passportOpen ? "cover-rotate" : "cover"}>
             <figure className="front"></figure>
           </div>
           <div className="details">
