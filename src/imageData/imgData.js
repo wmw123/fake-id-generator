@@ -39,43 +39,228 @@ import mouth6 from "../images/mouth/mouth6.png";
 export const leftEyeData = {
   name: "leftEye",
   coordinates: { x: 10, y: 15 },
-  featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
+  featureArray: [
+    {
+      value: leftEye1,
+      label: (
+        <div>
+          <img src={leftEye1} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEye2,
+      label: (
+        <div>
+          <img src={leftEye2} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEye3,
+      label: (
+        <div>
+          <img src={leftEye3} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEye4,
+      label: (
+        <div>
+          <img src={leftEye4} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEye5,
+      label: (
+        <div>
+          <img src={leftEye5} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+  ],
 };
 
 export const leftEyebrowData = {
   name: "leftEyebrow",
   coordinates: { x: 10, y: 10 },
   featureArray: [
-    leftEyebrow1,
-    leftEyebrow2,
-    leftEyebrow3,
-    leftEyebrow4,
-    leftEyebrow5,
+    {
+      value: leftEyebrow1,
+      label: (
+        <div>
+          <img src={leftEyebrow1} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEyebrow2,
+      label: (
+        <div>
+          <img src={leftEyebrow2} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEyebrow3,
+      label: (
+        <div>
+          <img src={leftEyebrow3} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEyebrow4,
+      label: (
+        <div>
+          <img src={leftEyebrow4} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: leftEyebrow5,
+      label: (
+        <div>
+          <img src={leftEyebrow5} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
   ],
 };
 
 export const rightEyeData = {
   name: "rightEye",
   coordinates: { x: 40, y: 15 },
-  featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
+  featureArray: [
+    {
+      value: rightEye1,
+      label: (
+        <div>
+          <img src={rightEye1} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEye2,
+      label: (
+        <div>
+          <img src={rightEye2} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEye3,
+      label: (
+        <div>
+          <img src={rightEye3} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEye4,
+      label: (
+        <div>
+          <img src={rightEye4} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEye5,
+      label: (
+        <div>
+          <img src={rightEye5} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+  ],
 };
 
 export const rightEyebrowData = {
   name: "rightEyebrow",
   coordinates: { x: 40, y: 10 },
   featureArray: [
-    rightEyebrow1,
-    rightEyebrow2,
-    rightEyebrow3,
-    rightEyebrow4,
-    rightEyebrow5,
+    {
+      value: rightEyebrow1,
+      label: (
+        <div>
+          <img src={rightEyebrow1} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEyebrow2,
+      label: (
+        <div>
+          <img src={rightEyebrow2} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEyebrow3,
+      label: (
+        <div>
+          <img src={rightEyebrow3} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEyebrow4,
+      label: (
+        <div>
+          <img src={rightEyebrow4} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: rightEyebrow5,
+      label: (
+        <div>
+          <img src={rightEyebrow5} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
   ],
 };
 
 export const noseData = {
   name: "nose",
   coordinates: { x: 35, y: 35 },
-  featureArray: [nose1, nose2, nose3, nose4],
+  featureArray: [
+    {
+      value: nose1,
+      label: (
+        <div>
+          <img src={nose1} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: nose2,
+      label: (
+        <div>
+          <img src={nose2} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: nose3,
+      label: (
+        <div>
+          <img src={nose3} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+    {
+      value: nose4,
+      label: (
+        <div>
+          <img src={nose4} height="30px" width="30px" alt={""} />
+        </div>
+      ),
+    },
+  ],
 };
 
 export const mouthData = {
@@ -86,7 +271,7 @@ export const mouthData = {
       value: mouth1,
       label: (
         <div>
-          <img src={mouth1} height="30px" width="30px" />1
+          <img src={mouth1} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -94,7 +279,7 @@ export const mouthData = {
       value: mouth2,
       label: (
         <div>
-          <img src={mouth2} height="30px" width="30px" />2
+          <img src={mouth2} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -102,7 +287,7 @@ export const mouthData = {
       value: mouth3,
       label: (
         <div>
-          <img src={mouth3} height="30px" width="30px" />2
+          <img src={mouth3} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -110,7 +295,7 @@ export const mouthData = {
       value: mouth4,
       label: (
         <div>
-          <img src={mouth4} height="30px" width="30px" />4
+          <img src={mouth4} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -118,7 +303,7 @@ export const mouthData = {
       value: mouth5,
       label: (
         <div>
-          <img src={mouth5} height="30px" width="30px" />5
+          <img src={mouth5} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -126,7 +311,7 @@ export const mouthData = {
       value: mouth6,
       label: (
         <div>
-          <img src={mouth6} height="30px" width="30px" />6
+          <img src={mouth6} height="30px" width="30px" alt={""} />
         </div>
       ),
     },

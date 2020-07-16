@@ -20,8 +20,6 @@ import {
 import { fetchNetWeights } from "face-api.js";
 
 export default function PhotoEditor() {
-  console.log(mouthData);
-  // const mouthData = mouthData;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -80,46 +78,6 @@ export default function PhotoEditor() {
     }
   };
 
-  const dropDownMaker = (featureData) => {
-    return (
-      <>
-        <>{featureData.name}</>
-        <select
-          onClick={(event) => {
-            placeFeature(
-              featureData.featureArray.label,
-              featureData.name,
-              featureData.coordinates.x,
-              featureData.coordinates.y
-            );
-          }}
-        >
-          <option key={0} value="empty">
-            Nothing
-          </option>
-          {featureData.featureArray.map((image, index) => {
-            return (
-              <option
-                key={index + 1}
-                value={image}
-                style={{ backgroundImage: `url(${image})` }}
-              >
-                {index + 1}
-              </option>
-            );
-          })}
-        </select>
-      </>
-    );
-  };
-
-  const createPhoto = () => {
-    mergeImages(imgArray).then(
-      (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
-      history.push("/passporteditor")
-    );
-  };
-
   function dropDownCreator(featureData) {
     return (
       <div style={{ width: "100px" }}>
@@ -127,13 +85,6 @@ export default function PhotoEditor() {
           options={featureData.featureArray}
           autosize={true}
           onChange={(event) => {
-            console.log(
-              "HALLO",
-              event.value,
-              featureData.name,
-              featureData.coordinates.x,
-              featureData.coordinates.y
-            );
             placeFeature(
               event.value,
               featureData.name,
@@ -146,6 +97,13 @@ export default function PhotoEditor() {
     );
   }
 
+  const createPhoto = () => {
+    mergeImages(imgArray).then(
+      (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
+      history.push("/passporteditor")
+    );
+  };
+
   return (
     <>
       <div>PhotoEditor</div>
@@ -157,12 +115,11 @@ export default function PhotoEditor() {
           alt={""}
         />
       </div>
-      {/* {dropDownMaker(leftEyebrowData)}
-      {dropDownMaker(leftEyeData)}
-      {dropDownMaker(rightEyebrowData)}
-      {dropDownMaker(rightEyeData)}
-      {dropDownMaker(noseData)} */}
-      {/* {dropDownMaker(mouthData)} */}
+      {dropDownCreator(leftEyebrowData)}
+      {dropDownCreator(leftEyeData)}
+      {dropDownCreator(rightEyebrowData)}
+      {dropDownCreator(rightEyeData)}
+      {dropDownCreator(noseData)}
       {dropDownCreator(mouthData)}
       <button onClick={createPhoto}>Save photo!</button>
     </>
