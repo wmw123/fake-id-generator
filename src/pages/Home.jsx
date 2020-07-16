@@ -3,7 +3,6 @@ import WebcamCapture from "../components/WebcamCapture";
 
 export default function Home() {
   const takePhoto = (e) => {
-    console.log("click!");
     e.preventDefault();
 
     setButton("");

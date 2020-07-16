@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case photoActionTypes.ADD:
+    case photoActionTypes.ADD_PHOTO:
       return { ...state, imageSrc: action.payload };
     default:
       return state;
