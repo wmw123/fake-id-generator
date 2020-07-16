@@ -197,7 +197,7 @@ export default function PhotoEditor() {
         <img
           id="portraitImage"
           src={portrait}
-          style={{ position: "relative", zIndex: 1 }}
+          style={{ position: "relative" }}
           alt={""}
         />
       </div>
@@ -207,7 +207,7 @@ export default function PhotoEditor() {
       {dropDownMaker(rightEyeData)}
       {dropDownMaker(noseData)}
       {dropDownMaker(mouthData)}
-      <button onClick={createPhoto} />
+      <button onClick={createPhoto}>Save photo!</button>
     </>
   );
 }
