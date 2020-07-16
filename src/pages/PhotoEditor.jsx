@@ -135,7 +135,9 @@ export default function PhotoEditor() {
     newFeature.style.left = l + x + "px";
 
     if (image === "empty") {
-      document.body.removeChild(oldFeature);
+      if (oldFeature) {
+        document.body.removeChild(oldFeature);
+      }
       const index = imgArray.findIndex((img) => {
         return img.name === nameId;
       });
@@ -164,7 +166,7 @@ export default function PhotoEditor() {
       <>
         <>{featureData.name}</>
         <select
-          onChange={(event) => {
+          onClick={(event) => {
             placeFeature(
               event.target.value,
               featureData.name,
