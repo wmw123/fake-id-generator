@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import mergeImages from "merge-images";
 import "./attributes.css";
 
+import { selectImgSrc } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
 
-import portrait from "../images/portrait.jpg";
+// import portrait from "../images/portrait.jpg";
 import {
   leftEyeData,
   leftEyebrowData,
@@ -22,6 +23,7 @@ import { fetchNetWeights } from "face-api.js";
 export default function PhotoEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const portrait = useSelector(selectImgSrc);
 
   const [imgArray, set_imgArray] = useState([
     { name: "portrait", src: portrait },
@@ -31,50 +33,51 @@ export default function PhotoEditor() {
     const container = document.getElementById("imgContainer");
     const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(nameId);
+    if (portrait) {
+      const l = portrait.offsetLeft;
+      const t = portrait.offsetTop;
+      const w = portrait.width;
+      const h = portrait.height;
 
-    const l = portrait.offsetLeft;
-    const t = portrait.offsetTop;
-    const w = portrait.width;
-    const h = portrait.height;
+      const newFeature = document.createElement("img");
 
-    const newFeature = document.createElement("img");
+      // use dynamic "feature" argument here
+      newFeature.setAttribute("src", image);
+      newFeature.setAttribute("id", nameId);
+      newFeature.setAttribute("class", "overlays");
 
-    // use dynamic "feature" argument here
-    newFeature.setAttribute("src", image);
-    newFeature.setAttribute("id", nameId);
-    newFeature.setAttribute("class", "overlays");
+      // use dynamic "x" and "y" coordinates arguments here
+      newFeature.style.top = t + y + "px";
+      newFeature.style.left = l + x + "px";
+      // newFeature.style.height = "50px";
+      // newFeature.style.width = "50px";
+      // newFeature.style.position = "absolute";
 
-    // use dynamic "x" and "y" coordinates arguments here
-    newFeature.style.top = t + y + "px";
-    newFeature.style.left = l + x + "px";
-    // newFeature.style.height = "50px";
-    // newFeature.style.width = "50px";
-    // newFeature.style.position = "absolute";
-
-    if (image === "empty") {
-      if (oldFeature) {
-        container.removeChild(oldFeature);
+      if (image === "empty") {
+        if (oldFeature) {
+          container.removeChild(oldFeature);
+        }
+        const index = imgArray.findIndex((img) => {
+          return img.name === nameId;
+        });
+        if (index !== -1) {
+          imgArray.splice(index);
+        }
+        console.log("removed", "index: ", index);
+      } else if (oldFeature) {
+        container.replaceChild(newFeature, oldFeature);
+        const index = imgArray.findIndex((img) => {
+          return img.name === nameId;
+        });
+        if (index !== -1) {
+          imgArray[index] = { name: nameId, src: image, x, y };
+        }
+        console.log("replaced", "index:", index);
+      } else {
+        container.appendChild(newFeature);
+        set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
+        console.log("added");
       }
-      const index = imgArray.findIndex((img) => {
-        return img.name === nameId;
-      });
-      if (index !== -1) {
-        imgArray.splice(index);
-      }
-      console.log("removed", index, imgArray);
-    } else if (oldFeature) {
-      container.replaceChild(newFeature, oldFeature);
-      const index = imgArray.findIndex((img) => {
-        return img.name === nameId;
-      });
-      if (index !== -1) {
-        imgArray[index] = { name: nameId, src: image, x, y };
-      }
-      console.log("replaced", index, imgArray);
-    } else {
-      container.appendChild(newFeature);
-      set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
-      console.log("added", imgArray, portrait);
     }
   };
 
