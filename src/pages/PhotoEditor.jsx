@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,6 @@ import { fetchNetWeights } from "face-api.js";
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
-  const selectRef = useRef();
   const history = useHistory();
 
   const [imgArray, set_imgArray] = useState([
@@ -98,7 +97,7 @@ export default function PhotoEditor() {
     );
   };
 
-  const createPhoto = () => {
+  const createMergedPhoto = () => {
     mergeImages(imgArray).then(
       (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
       history.push("/passporteditor")
@@ -122,7 +121,7 @@ export default function PhotoEditor() {
       {dropDownCreator(rightEyeData)}
       {dropDownCreator(noseData)}
       {dropDownCreator(mouthData)}
-      <button onClick={createPhoto}>Save photo!</button>
+      <button onClick={createMergedPhoto}>Save photo!</button>
     </>
   );
 }
