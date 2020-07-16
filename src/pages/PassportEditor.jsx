@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   exportComponentAsJPEG,
@@ -10,6 +11,7 @@ import './PassportEditor.css';
 import image from '../img/img_passport.jpeg';
 
 export default function PassportEditor() {
+  const history = useHistory();
   const componentRef = useRef();
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
@@ -36,10 +38,6 @@ export default function PassportEditor() {
         ))}
       </select>
     );
-  };
-
-  const submitPassport = () => {
-    console.log(details);
   };
 
   const openPassport = () => {
@@ -109,6 +107,17 @@ export default function PassportEditor() {
 
   return (
     <div className="passport-container">
+      <div className="nav-btn">
+        <button className="webcam-btn" onClick={() => history.push('/')}>
+          New picture
+        </button>
+        <button
+          className="editor-btn"
+          onClick={() => history.push('/photoeditor')}
+        >
+          Edit your picture
+        </button>
+      </div>
       <div ref={componentRef}>
         <div
           className={
