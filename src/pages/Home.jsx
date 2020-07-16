@@ -29,7 +29,7 @@ export default function Home() {
       </div>
       <div>
         <button onClick={() => history.push("/passporteditor")}>
-          Check out your passport
+          Passport check
         </button>
         <button onClick={() => history.push("/photoeditor")}>
           Edit your picture
