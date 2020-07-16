@@ -1,52 +1,52 @@
-import React, { useState } from "react";
-import "./attributes.css";
+import React, { useState } from 'react';
+import './attributes.css';
 
-import portrait from "../images/portrait.jpg";
+import portrait from '../images/portrait.jpg';
 
-import leftEye1 from "../images/leftEye/leftEye1.png";
-import leftEye2 from "../images/leftEye/leftEye2.png";
-import leftEye3 from "../images/leftEye/leftEye3.png";
-import leftEye4 from "../images/leftEye/leftEye4.png";
-import leftEye5 from "../images/leftEye/leftEye5.png";
+import leftEye1 from '../images/leftEye/leftEye1.png';
+import leftEye2 from '../images/leftEye/leftEye2.png';
+import leftEye3 from '../images/leftEye/leftEye3.png';
+import leftEye4 from '../images/leftEye/leftEye4.png';
+import leftEye5 from '../images/leftEye/leftEye5.png';
 
-import leftEyebrow1 from "../images/leftEyebrow/leftEyebrow1.png";
-import leftEyebrow2 from "../images/leftEyebrow/leftEyebrow2.png";
-import leftEyebrow3 from "../images/leftEyebrow/leftEyebrow3.png";
-import leftEyebrow4 from "../images/leftEyebrow/leftEyebrow4.png";
-import leftEyebrow5 from "../images/leftEyebrow/leftEyebrow5.png";
+import leftEyebrow1 from '../images/leftEyebrow/leftEyebrow1.png';
+import leftEyebrow2 from '../images/leftEyebrow/leftEyebrow2.png';
+import leftEyebrow3 from '../images/leftEyebrow/leftEyebrow3.png';
+import leftEyebrow4 from '../images/leftEyebrow/leftEyebrow4.png';
+import leftEyebrow5 from '../images/leftEyebrow/leftEyebrow5.png';
 
-import rightEye1 from "../images/rightEye/rightEye1.png";
-import rightEye2 from "../images/rightEye/rightEye2.png";
-import rightEye3 from "../images/rightEye/rightEye3.png";
-import rightEye4 from "../images/rightEye/rightEye4.png";
-import rightEye5 from "../images/rightEye/rightEye5.png";
+import rightEye1 from '../images/rightEye/rightEye1.png';
+import rightEye2 from '../images/rightEye/rightEye2.png';
+import rightEye3 from '../images/rightEye/rightEye3.png';
+import rightEye4 from '../images/rightEye/rightEye4.png';
+import rightEye5 from '../images/rightEye/rightEye5.png';
 
-import rightEyebrow1 from "../images/rightEyebrow/rightEyebrow1.png";
-import rightEyebrow2 from "../images/rightEyebrow/rightEyebrow2.png";
-import rightEyebrow3 from "../images/rightEyebrow/rightEyebrow3.png";
-import rightEyebrow4 from "../images/rightEyebrow/rightEyebrow4.png";
-import rightEyebrow5 from "../images/rightEyebrow/rightEyebrow5.png";
+import rightEyebrow1 from '../images/rightEyebrow/rightEyebrow1.png';
+import rightEyebrow2 from '../images/rightEyebrow/rightEyebrow2.png';
+import rightEyebrow3 from '../images/rightEyebrow/rightEyebrow3.png';
+import rightEyebrow4 from '../images/rightEyebrow/rightEyebrow4.png';
+import rightEyebrow5 from '../images/rightEyebrow/rightEyebrow5.png';
 
-import nose1 from "../images/nose/nose1.png";
-import nose2 from "../images/nose/nose2.png";
-import nose3 from "../images/nose/nose3.png";
-import nose4 from "../images/nose/nose4.png";
+import nose1 from '../images/nose/nose1.png';
+import nose2 from '../images/nose/nose2.png';
+import nose3 from '../images/nose/nose3.png';
+import nose4 from '../images/nose/nose4.png';
 
-import mouth1 from "../images/mouth/mouth1.png";
-import mouth2 from "../images/mouth/mouth2.png";
-import mouth3 from "../images/mouth/mouth3.png";
-import mouth4 from "../images/mouth/mouth4.png";
-import mouth5 from "../images/mouth/mouth5.png";
-import mouth6 from "../images/mouth/mouth6.png";
+import mouth1 from '../images/mouth/mouth1.png';
+import mouth2 from '../images/mouth/mouth2.png';
+import mouth3 from '../images/mouth/mouth3.png';
+import mouth4 from '../images/mouth/mouth4.png';
+import mouth5 from '../images/mouth/mouth5.png';
+import mouth6 from '../images/mouth/mouth6.png';
 
 export default function PhotoEditor() {
   const leftEyeData = {
-    name: "left eye",
+    name: 'left eye',
     coordinates: { x: 10, y: 15 },
     featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
   };
   const leftEyebrowData = {
-    name: "left eyebrow",
+    name: 'left eyebrow',
     coordinates: { x: 10, y: 10 },
     featureArray: [
       leftEyebrow1,
@@ -57,12 +57,12 @@ export default function PhotoEditor() {
     ],
   };
   const rightEyeData = {
-    name: "right eye",
+    name: 'right eye',
     coordinates: { x: 40, y: 15 },
     featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
   };
   const rightEyebrowData = {
-    name: "right eyebrow",
+    name: 'right eyebrow',
     coordinates: { x: 40, y: 10 },
     featureArray: [
       rightEyebrow1,
@@ -73,25 +73,23 @@ export default function PhotoEditor() {
     ],
   };
   const noseData = {
-    name: "nose",
+    name: 'nose',
     coordinates: { x: 35, y: 35 },
     featureArray: [nose1, nose2, nose3, nose4],
   };
   const mouthData = {
-    name: "mouth",
+    name: 'mouth',
     coordinates: { x: 50, y: 50 },
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
-
   const placeFeature = (image, name, x, y) => {
-    const portrait = document.getElementById("portraitImage");
+    const portrait = document.getElementById('portraitImage');
     const oldFeature = document.getElementById(name);
 
-    console.log("ARGUMENTS", "featureImg:", image, "x:", x, "y:", y);
+    console.log('ARGUMENTS', 'featureImg:', image, 'x:', x, 'y:', y);
 
-    console.log("OLD FEATURE", oldFeature);
-
+    console.log('OLD FEATURE', oldFeature);
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
@@ -99,30 +97,30 @@ export default function PhotoEditor() {
     const h = portrait.height;
 
     console.log(
-      "PORTRAIT DATA",
-      "left:",
+      'PORTRAIT DATA',
+      'left:',
       l,
-      "top:",
+      'top:',
       t,
-      "width:",
+      'width:',
       w,
-      "height:",
+      'height:',
       h
     );
 
-    const newFeature = document.createElement("img");
+    const newFeature = document.createElement('img');
 
     // use dynamic "feature" argument here
-    newFeature.setAttribute("src", image);
-    newFeature.setAttribute("id", name);
-    newFeature.setAttribute("class", "overlays");
+    newFeature.setAttribute('src', image);
+    newFeature.setAttribute('id', name);
+    newFeature.setAttribute('class', 'overlays');
 
     // use dynamic "x" and "y" coordinates arguments here
-    newFeature.style.top = t + y + "px";
-    newFeature.style.left = l + x + "px";
+    newFeature.style.top = t + y + 'px';
+    newFeature.style.left = l + x + 'px';
     // set_testState(newFeature);
 
-    console.log("NEW FEATURE:", newFeature);
+    console.log('NEW FEATURE:', newFeature);
 
     oldFeature
       ? document.body.replaceChild(newFeature, oldFeature)
@@ -165,8 +163,8 @@ export default function PhotoEditor() {
       <img
         id="portraitImage"
         src={portrait}
-        style={{ position: "relative" }}
-        alt={""}
+        style={{ position: 'relative' }}
+        alt={''}
       />
       {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(leftEyeData)}
@@ -174,7 +172,6 @@ export default function PhotoEditor() {
       {dropDownMaker(rightEyeData)}
       {dropDownMaker(noseData)}
       {dropDownMaker(mouthData)}
-
     </>
   );
 }
