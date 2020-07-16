@@ -40,6 +40,7 @@ export const leftEyeData = {
   name: "leftEye",
   coordinates: { x: 10, y: 15 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: leftEye1,
       label: (
@@ -87,6 +88,7 @@ export const leftEyebrowData = {
   name: "leftEyebrow",
   coordinates: { x: 10, y: 10 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: leftEyebrow1,
       label: (
@@ -134,6 +136,7 @@ export const rightEyeData = {
   name: "rightEye",
   coordinates: { x: 40, y: 15 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: rightEye1,
       label: (
@@ -181,6 +184,7 @@ export const rightEyebrowData = {
   name: "rightEyebrow",
   coordinates: { x: 40, y: 10 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: rightEyebrow1,
       label: (
@@ -228,6 +232,7 @@ export const noseData = {
   name: "nose",
   coordinates: { x: 35, y: 35 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: nose1,
       label: (
@@ -267,6 +272,7 @@ export const mouthData = {
   name: "mouth",
   coordinates: { x: 50, y: 50 },
   featureArray: [
+    { value: "empty", label: <div>---</div> },
     {
       value: mouth1,
       label: (

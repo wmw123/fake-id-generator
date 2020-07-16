@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -21,6 +21,7 @@ import { fetchNetWeights } from "face-api.js";
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
+  const selectRef = useRef();
   const history = useHistory();
 
   const [imgArray, set_imgArray] = useState([
