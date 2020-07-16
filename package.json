@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "merge-images": "^2.0.0",
+    "face-api.js": "^0.22.2",
     "react": "^16.13.1",
     "react-component-export-image": "^0.1.6",
     "react-dom": "^16.13.1",

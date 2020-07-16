@@ -126,3 +126,9 @@ button {
   padding: 0.5rem;
   margin: 2rem 1rem;
 }
+
+.nav-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
