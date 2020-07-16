@@ -4,7 +4,6 @@ import leftEye1 from "../images/leftEye/leftEye1.png";
 import leftEye2 from "../images/leftEye/leftEye2.png";
 import leftEye3 from "../images/leftEye/leftEye3.png";
 import leftEye4 from "../images/leftEye/leftEye4.png";
-import leftEye5 from "../images/leftEye/leftEye5.png";
 
 import leftEyebrow1 from "../images/leftEyebrow/leftEyebrow1.png";
 import leftEyebrow2 from "../images/leftEyebrow/leftEyebrow2.png";
@@ -16,7 +15,6 @@ import rightEye1 from "../images/rightEye/rightEye1.png";
 import rightEye2 from "../images/rightEye/rightEye2.png";
 import rightEye3 from "../images/rightEye/rightEye3.png";
 import rightEye4 from "../images/rightEye/rightEye4.png";
-import rightEye5 from "../images/rightEye/rightEye5.png";
 
 import rightEyebrow1 from "../images/rightEyebrow/rightEyebrow1.png";
 import rightEyebrow2 from "../images/rightEyebrow/rightEyebrow2.png";
@@ -70,14 +68,6 @@ export const leftEyeData = {
       label: (
         <div>
           <img src={leftEye4} height="30px" width="30px" alt={""} />
-        </div>
-      ),
-    },
-    {
-      value: leftEye5,
-      label: (
-        <div>
-          <img src={leftEye5} height="30px" width="30px" alt={""} />
         </div>
       ),
     },
@@ -166,14 +156,6 @@ export const rightEyeData = {
       label: (
         <div>
           <img src={rightEye4} height="30px" width="30px" alt={""} />
-        </div>
-      ),
-    },
-    {
-      value: rightEye5,
-      label: (
-        <div>
-          <img src={rightEye5} height="30px" width="30px" alt={""} />
         </div>
       ),
     },

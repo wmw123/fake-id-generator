@@ -44,14 +44,12 @@ export default function PhotoEditor() {
       // use dynamic "feature" argument here
       newFeature.setAttribute("src", image);
       newFeature.setAttribute("id", nameId);
-      newFeature.setAttribute("class", "overlays");
+      // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
       newFeature.style.top = t + y + "px";
       newFeature.style.left = l + x + "px";
-      // newFeature.style.height = "50px";
-      // newFeature.style.width = "50px";
-      // newFeature.style.position = "absolute";
+      newFeature.style.position = "absolute";
 
       if (image === "empty") {
         if (oldFeature) {
@@ -118,13 +116,31 @@ export default function PhotoEditor() {
           alt={""}
         />
       </div>
-      {dropDownCreator(leftEyebrowData)}
-      {dropDownCreator(leftEyeData)}
-      {dropDownCreator(rightEyebrowData)}
-      {dropDownCreator(rightEyeData)}
-      {dropDownCreator(noseData)}
-      {dropDownCreator(mouthData)}
-      <button onClick={createMergedPhoto}>Save photo!</button>
+      {portrait ? (
+        <>
+          left eyebrow
+          {dropDownCreator(leftEyebrowData)}
+          left eye
+          {dropDownCreator(leftEyeData)}
+          right eyebrow
+          {dropDownCreator(rightEyebrowData)}
+          right eye
+          {dropDownCreator(rightEyeData)}
+          nose
+          {dropDownCreator(noseData)}
+          mouth
+          {dropDownCreator(mouthData)}
+          <button onClick={createMergedPhoto}>Save photo!</button>
+        </>
+      ) : (
+        <button
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          Take a photo first!
+        </button>
+      )}
     </>
   );
 }
