@@ -7,14 +7,16 @@ import {
 } from 'react-component-export-image';
 import { fetchAllCountries } from '../store/countries/actions';
 import { selectCountries } from '../store/countries/selectors';
+import { selectImgSrc } from '../store/photo/selectors';
 import './PassportEditor.css';
-import image from '../img/img_passport.jpeg';
+// import image from '../img/img_passport.jpeg';
 
 export default function PassportEditor() {
   const history = useHistory();
   const componentRef = useRef();
   const dispatch = useDispatch();
   const countries = useSelector(selectCountries);
+  const photo = useSelector(selectImgSrc);
   const [passportOpen, setPassportOpen] = useState(true);
   const [details, setDetails] = useState({
     name: '',
@@ -41,7 +43,6 @@ export default function PassportEditor() {
   };
 
   const openPassport = () => {
-    console.log(passportOpen);
     setPassportOpen(!passportOpen);
   };
 
@@ -130,7 +131,9 @@ export default function PassportEditor() {
           <div className="details">
             <div className="header">{countries ? renderCountries() : null}</div>
             <div className="input-wrapper">
-              <img className="picture" src={image} alt="passport" />
+              {photo ? (
+                <img className="picture" src={photo} alt="passport" />
+              ) : null}
               {renderForm()}
             </div>
           </div>

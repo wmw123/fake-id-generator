@@ -1,1 +1,1 @@
-export const selectImgSrc = (state) => state.imageSrc;
+export const selectImgSrc = (state) => state.photo.imageSrc;
