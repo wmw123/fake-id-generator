@@ -11,8 +11,8 @@ function WebcamCapture({ addImgSrc }) {
   const webcamRef = useRef(null);
 
   const videoConstraints = {
-    width: { min: 480 },
-    height: { min: 400 },
+    width: { min: 413 },
+    height: { min: 531 },
     aspectRatio: 0.6666666667,
   };
 
@@ -34,8 +34,8 @@ function WebcamCapture({ addImgSrc }) {
         <h2>Capture your face</h2>
         <Webcam
           videoConstraints={videoConstraints}
-          width={300}
-          height={450}
+          width={413}
+          height={531}
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
@@ -55,13 +55,7 @@ function WebcamCapture({ addImgSrc }) {
       </div>
       <div>
         <h2>Preview of your photo</h2>
-        {imageSrc && (
-          <img
-            src={imageSrc}
-            alt="a screenshot of your face"
-            style={{ width: 300, height: 450 }}
-          />
-        )}
+        {imageSrc && <img src={imageSrc} alt="a screenshot of your face" />}
         <button
           onClick={() => {
             addImgSrc(imageSrc);
