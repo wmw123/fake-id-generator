@@ -15,7 +15,7 @@ import {
   rightEyebrowData,
   noseData,
   mouthData,
-} from "../imageData/imgData";
+} from "../imageData/imageData";
 
 import { fetchNetWeights } from "face-api.js";
 
@@ -48,8 +48,8 @@ export default function PhotoEditor() {
     // use dynamic "x" and "y" coordinates arguments here
     newFeature.style.top = t + y + "px";
     newFeature.style.left = l + x + "px";
-    // newFeature.style.height = 50;
-    // newFeature.style.width = 50;
+    // newFeature.style.height = "50px";
+    // newFeature.style.width = "50px";
     // newFeature.style.position = "absolute";
 
     if (image === "empty") {
@@ -79,7 +79,7 @@ export default function PhotoEditor() {
     }
   };
 
-  function dropDownCreator(featureData) {
+  const dropDownCreator = (featureData) => {
     return (
       <div style={{ width: "100px" }}>
         <Select
@@ -96,7 +96,7 @@ export default function PhotoEditor() {
         />
       </div>
     );
-  }
+  };
 
   const createPhoto = () => {
     mergeImages(imgArray).then(
