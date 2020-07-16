@@ -1,7 +1,10 @@
-
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import mergeImages from "merge-images";
 import "./attributes.css";
+
+import { addMergedPhoto } from "../store/photo/actions";
 
 import portrait from "../images/portrait.jpg";
 
@@ -42,18 +45,19 @@ import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
 export default function PhotoEditor() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [imgArray, set_imgArray] = useState([
     { name: "portrait", src: portrait },
   ]);
 
   const leftEyeData = {
     name: "leftEye",
-
     coordinates: { x: 10, y: 15 },
     featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
   };
   const leftEyebrowData = {
-
     name: "leftEyebrow",
     coordinates: { x: 10, y: 10 },
     featureArray: [
@@ -65,13 +69,11 @@ export default function PhotoEditor() {
     ],
   };
   const rightEyeData = {
-
     name: "rightEye",
     coordinates: { x: 40, y: 15 },
     featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
   };
   const rightEyebrowData = {
-
     name: "rightEyebrow",
     coordinates: { x: 40, y: 10 },
     featureArray: [
@@ -83,31 +85,32 @@ export default function PhotoEditor() {
     ],
   };
   const noseData = {
-    name: 'nose',
+    name: "nose",
     coordinates: { x: 35, y: 35 },
     featureArray: [nose1, nose2, nose3, nose4],
   };
   const mouthData = {
-    name: 'mouth',
+    name: "mouth",
     coordinates: { x: 50, y: 50 },
     featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
   };
 
   const placeFeature = (image, nameId, x, y) => {
+    console.log("IMAGE:", image);
     const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(nameId);
 
-    console.log(
-      "ARGUMENTS",
-      "featureImg:",
-      image,
-      "name:",
-      nameId,
-      "x:",
-      x,
-      "y:",
-      y
-    );
+    // console.log(
+    //   "ARGUMENTS",
+    //   "featureImg:",
+    //   image,
+    //   "name:",
+    //   nameId,
+    //   "x:",
+    //   x,
+    //   "y:",
+    //   y
+    // );
 
     // console.log("OLD FEATURE", oldFeature);
 
@@ -128,7 +131,7 @@ export default function PhotoEditor() {
     //   h
     // );
 
-    const newFeature = document.createElement('img');
+    const newFeature = document.createElement("img");
 
     // use dynamic "feature" argument here
     newFeature.setAttribute("src", image);
@@ -201,8 +204,11 @@ export default function PhotoEditor() {
 
   const createPhoto = () => {
     mergeImages(imgArray).then(
-      (b64) => (document.querySelector("img").src = b64)
-      // send to redux store
+      (b64) => (
+        // (document.querySelector("img").src = b64),
+        console.log(typeof b64), dispatch(addMergedPhoto(b64))
+      ),
+      history.push("/passporteditor")
     );
   };
 
@@ -212,8 +218,8 @@ export default function PhotoEditor() {
       <img
         id="portraitImage"
         src={portrait}
-        style={{ position: 'relative' }}
-        alt={''}
+        style={{ position: "relative" }}
+        alt={""}
       />
       {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(leftEyeData)}
