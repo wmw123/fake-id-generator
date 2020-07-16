@@ -1,8 +1,8 @@
 export const photoActionTypes = {
-  ADD: "ADD",
+  ADD_PHOTO: "ADD_PHOTO",
 };
 
 export const addImgSrc = (imageSrc) => (dispatch) => {
-  console.log("imgSrc in addImgSrc", imageSrc);
-  return dispatch({ type: photoActionTypes.ADD, payload: imageSrc });
+  // console.log("imgSrc in addImgSrc", imageSrc);
+  return dispatch({ type: photoActionTypes.ADD_PHOTO, payload: imageSrc });
 };
