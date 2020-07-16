@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select from "react-select";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import mergeImages from "merge-images";
@@ -7,94 +8,26 @@ import "./attributes.css";
 import { addMergedPhoto } from "../store/photo/actions";
 
 import portrait from "../images/portrait.jpg";
+import {
+  leftEyeData,
+  leftEyebrowData,
+  rightEyeData,
+  rightEyebrowData,
+  noseData,
+  mouthData,
+} from "../imageData/imgData";
 
-import leftEye1 from "../images/leftEye/leftEye1.png";
-import leftEye2 from "../images/leftEye/leftEye2.png";
-import leftEye3 from "../images/leftEye/leftEye3.png";
-import leftEye4 from "../images/leftEye/leftEye4.png";
-import leftEye5 from "../images/leftEye/leftEye5.png";
-
-import leftEyebrow1 from "../images/leftEyebrow/leftEyebrow1.png";
-import leftEyebrow2 from "../images/leftEyebrow/leftEyebrow2.png";
-import leftEyebrow3 from "../images/leftEyebrow/leftEyebrow3.png";
-import leftEyebrow4 from "../images/leftEyebrow/leftEyebrow4.png";
-import leftEyebrow5 from "../images/leftEyebrow/leftEyebrow5.png";
-
-import rightEye1 from "../images/rightEye/rightEye1.png";
-import rightEye2 from "../images/rightEye/rightEye2.png";
-import rightEye3 from "../images/rightEye/rightEye3.png";
-import rightEye4 from "../images/rightEye/rightEye4.png";
-import rightEye5 from "../images/rightEye/rightEye5.png";
-
-import rightEyebrow1 from "../images/rightEyebrow/rightEyebrow1.png";
-import rightEyebrow2 from "../images/rightEyebrow/rightEyebrow2.png";
-import rightEyebrow3 from "../images/rightEyebrow/rightEyebrow3.png";
-import rightEyebrow4 from "../images/rightEyebrow/rightEyebrow4.png";
-import rightEyebrow5 from "../images/rightEyebrow/rightEyebrow5.png";
-
-import nose1 from "../images/nose/nose1.png";
-import nose2 from "../images/nose/nose2.png";
-import nose3 from "../images/nose/nose3.png";
-import nose4 from "../images/nose/nose4.png";
-
-import mouth1 from "../images/mouth/mouth1.png";
-import mouth2 from "../images/mouth/mouth2.png";
-import mouth3 from "../images/mouth/mouth3.png";
-import mouth4 from "../images/mouth/mouth4.png";
-import mouth5 from "../images/mouth/mouth5.png";
-import mouth6 from "../images/mouth/mouth6.png";
 import { fetchNetWeights } from "face-api.js";
 
 export default function PhotoEditor() {
+  console.log(mouthData);
+  // const mouthData = mouthData;
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [imgArray, set_imgArray] = useState([
     { name: "portrait", src: portrait },
   ]);
-
-  const leftEyeData = {
-    name: "leftEye",
-    coordinates: { x: 10, y: 15 },
-    featureArray: [leftEye1, leftEye2, leftEye3, leftEye4, leftEye5],
-  };
-  const leftEyebrowData = {
-    name: "leftEyebrow",
-    coordinates: { x: 10, y: 10 },
-    featureArray: [
-      leftEyebrow1,
-      leftEyebrow2,
-      leftEyebrow3,
-      leftEyebrow4,
-      leftEyebrow5,
-    ],
-  };
-  const rightEyeData = {
-    name: "rightEye",
-    coordinates: { x: 40, y: 15 },
-    featureArray: [rightEye1, rightEye2, rightEye3, rightEye4, rightEye5],
-  };
-  const rightEyebrowData = {
-    name: "rightEyebrow",
-    coordinates: { x: 40, y: 10 },
-    featureArray: [
-      rightEyebrow1,
-      rightEyebrow2,
-      rightEyebrow3,
-      rightEyebrow4,
-      rightEyebrow5,
-    ],
-  };
-  const noseData = {
-    name: "nose",
-    coordinates: { x: 35, y: 35 },
-    featureArray: [nose1, nose2, nose3, nose4],
-  };
-  const mouthData = {
-    name: "mouth",
-    coordinates: { x: 50, y: 50 },
-    featureArray: [mouth1, mouth2, mouth3, mouth4, mouth5, mouth6],
-  };
 
   const placeFeature = (image, nameId, x, y) => {
     const container = document.getElementById("imgContainer");
@@ -154,7 +87,7 @@ export default function PhotoEditor() {
         <select
           onClick={(event) => {
             placeFeature(
-              event.target.value,
+              featureData.featureArray.label,
               featureData.name,
               featureData.coordinates.x,
               featureData.coordinates.y
@@ -182,13 +115,36 @@ export default function PhotoEditor() {
 
   const createPhoto = () => {
     mergeImages(imgArray).then(
-      (b64) => (
-        // (document.querySelector("img").src = b64),
-        console.log(typeof b64), dispatch(addMergedPhoto(b64))
-      ),
+      (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
       history.push("/passporteditor")
     );
   };
+
+  function dropDownCreator(featureData) {
+    return (
+      <div style={{ width: "100px" }}>
+        <Select
+          options={featureData.featureArray}
+          autosize={true}
+          onChange={(event) => {
+            console.log(
+              "HALLO",
+              event.value,
+              featureData.name,
+              featureData.coordinates.x,
+              featureData.coordinates.y
+            );
+            placeFeature(
+              event.value,
+              featureData.name,
+              featureData.coordinates.x,
+              featureData.coordinates.y
+            );
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -201,12 +157,13 @@ export default function PhotoEditor() {
           alt={""}
         />
       </div>
-      {dropDownMaker(leftEyebrowData)}
+      {/* {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(leftEyeData)}
       {dropDownMaker(rightEyebrowData)}
       {dropDownMaker(rightEyeData)}
-      {dropDownMaker(noseData)}
-      {dropDownMaker(mouthData)}
+      {dropDownMaker(noseData)} */}
+      {/* {dropDownMaker(mouthData)} */}
+      {dropDownCreator(mouthData)}
       <button onClick={createPhoto}>Save photo!</button>
     </>
   );
