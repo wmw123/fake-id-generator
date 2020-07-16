@@ -43,6 +43,7 @@ import mouth3 from "../images/mouth/mouth3.png";
 import mouth4 from "../images/mouth/mouth4.png";
 import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
+import { fetchNetWeights } from "face-api.js";
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
@@ -96,40 +97,14 @@ export default function PhotoEditor() {
   };
 
   const placeFeature = (image, nameId, x, y) => {
-    console.log("IMAGE:", image);
+    const container = document.getElementById("imgContainer");
     const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(nameId);
-
-    // console.log(
-    //   "ARGUMENTS",
-    //   "featureImg:",
-    //   image,
-    //   "name:",
-    //   nameId,
-    //   "x:",
-    //   x,
-    //   "y:",
-    //   y
-    // );
-
-    // console.log("OLD FEATURE", oldFeature);
 
     const l = portrait.offsetLeft;
     const t = portrait.offsetTop;
     const w = portrait.width;
     const h = portrait.height;
-
-    // console.log(
-    //   "PORTRAIT DATA",
-    //   "left:",
-    //   l,
-    //   "top:",
-    //   t,
-    //   "width:",
-    //   w,
-    //   "height:",
-    //   h
-    // );
 
     const newFeature = document.createElement("img");
 
@@ -141,10 +116,13 @@ export default function PhotoEditor() {
     // use dynamic "x" and "y" coordinates arguments here
     newFeature.style.top = t + y + "px";
     newFeature.style.left = l + x + "px";
+    // newFeature.style.height = 50;
+    // newFeature.style.width = 50;
+    // newFeature.style.position = "absolute";
 
     if (image === "empty") {
       if (oldFeature) {
-        document.body.removeChild(oldFeature);
+        container.removeChild(oldFeature);
       }
       const index = imgArray.findIndex((img) => {
         return img.name === nameId;
@@ -154,7 +132,7 @@ export default function PhotoEditor() {
       }
       console.log("removed", index, imgArray);
     } else if (oldFeature) {
-      document.body.replaceChild(newFeature, oldFeature);
+      container.replaceChild(newFeature, oldFeature);
       const index = imgArray.findIndex((img) => {
         return img.name === nameId;
       });
@@ -163,9 +141,9 @@ export default function PhotoEditor() {
       }
       console.log("replaced", index, imgArray);
     } else {
-      document.body.appendChild(newFeature);
+      container.appendChild(newFeature);
       set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
-      console.log("added", imgArray);
+      console.log("added", imgArray, portrait);
     }
   };
 
@@ -215,12 +193,14 @@ export default function PhotoEditor() {
   return (
     <>
       <div>PhotoEditor</div>
-      <img
-        id="portraitImage"
-        src={portrait}
-        style={{ position: "relative" }}
-        alt={""}
-      />
+      <div id="imgContainer">
+        <img
+          id="portraitImage"
+          src={portrait}
+          style={{ position: "relative", zIndex: 1 }}
+          alt={""}
+        />
+      </div>
       {dropDownMaker(leftEyebrowData)}
       {dropDownMaker(leftEyeData)}
       {dropDownMaker(rightEyebrowData)}
