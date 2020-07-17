@@ -54,7 +54,7 @@ export default function MaskifyComponent() {
     console.log('models loaded');
 
     // wv: api looks for the html elemelent with the id 'portraitImage'
-    const originalImage = document.getElementById('portraitImage');
+    const originalImage = document.getElementById('capturedImg');
 
     const handleImage = (oldImage, newImage) => async () => {
       const detection = await faceapi

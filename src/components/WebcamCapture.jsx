@@ -1,13 +1,17 @@
-import React, { useState, useRef, useCallback } from "react";
-import Webcam from "react-webcam";
-import * as faceapi from "face-api.js";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addImgSrc } from "../store/photo/actions";
+import React, { useState, useRef, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import Webcam from 'react-webcam';
+import * as faceapi from 'face-api.js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addImgSrc } from '../store/photo/actions';
+import MaskifyComponent from '../util/MaskifyComponent';
 
 function WebcamCapture({ addImgSrc }) {
-  const [check, setCheck] = useState("✘");
+  const history = useHistory();
+  const [check, setCheck] = useState('✘');
   const [imageSrc, setImageSrc] = useState(null);
+  const [activateFaceDetection, setActivateFaceDetection] = useState(false);
   const webcamRef = useRef(null);
 
   const videoConstraints = {
@@ -22,7 +26,7 @@ function WebcamCapture({ addImgSrc }) {
   }, [webcamRef, setImageSrc]);
 
   const uploadImage = async function uploadAnImage() {
-    const imgFile = document.getElementById("myFileUpload").files[0];
+    const imgFile = document.getElementById('myFileUpload').files[0];
     const img = await faceapi.bufferToImage(imgFile);
 
     setImageSrc(img.src);
@@ -55,18 +59,31 @@ function WebcamCapture({ addImgSrc }) {
       </div>
       <div>
         <h2>Preview of your photo</h2>
-        {imageSrc && <img src={imageSrc} alt="a screenshot of your face" />}
-        <button
-          onClick={() => {
-            addImgSrc(imageSrc);
-            if (imageSrc !== null) {
-              setCheck("✔");
-            }
-          }}
-        >
-          Save photo
-        </button>
-        {check}
+        {imageSrc && (
+          <>
+            <img
+              src={imageSrc}
+              id="capturedImg"
+              alt="a screenshot of your face"
+            />
+            {activateFaceDetection ? <MaskifyComponent /> : null}
+            <button
+              onClick={() => {
+                addImgSrc(imageSrc);
+                if (imageSrc !== null) {
+                  setCheck('✔');
+                  setActivateFaceDetection(true);
+                }
+              }}
+            >
+              Save photo
+            </button>
+            {check}
+            <button onClick={() => history.push('/photoeditor')}>
+              Edit your picture
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
