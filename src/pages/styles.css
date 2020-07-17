@@ -1,0 +1,9 @@
+.container {
+  background-color: #ff9d45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Sriracha", cursive;
+  color: #34939e;
+}

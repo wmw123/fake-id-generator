@@ -3,6 +3,8 @@ import Select from "react-select";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import mergeImages from "merge-images";
+import "./attributes.css";
+import "./styles.css";
 
 import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
@@ -111,8 +113,8 @@ export default function PhotoEditor() {
   };
 
   return (
-    <>
-      <div>PhotoEditor</div>
+    <div>
+      <h1>PhotoEditor</h1>
       <div id="imgContainer">
         <img
           id="portraitImage"
@@ -146,6 +148,6 @@ export default function PhotoEditor() {
           Take a photo first!
         </button>
       )}
-    </>
+    </div>
   );
 }
