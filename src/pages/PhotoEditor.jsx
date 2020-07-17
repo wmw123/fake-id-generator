@@ -7,7 +7,7 @@ import { maskify } from '../util/maskify';
 import './attributes.css';
 
 import { selectImgSrc } from '../store/photo/selectors';
-import { addMergedPhoto } from '../store/photo/actions';
+import { addMergedPhoto, addCoordinates } from '../store/photo/actions';
 
 // import portrait from "../images/portrait.jpg";
 import {
@@ -25,14 +25,22 @@ export default function PhotoEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
   const portrait = useSelector(selectImgSrc);
+  const [coorResp, setCoorResp] = useState();
 
   const [imgArray, set_imgArray] = useState([
     { name: 'portrait', src: portrait },
   ]);
 
   useEffect(() => {
-    maskify();
+    async function fetchCoordinates() {
+      const response = await maskify();
+
+      setCoorResp(response);
+    }
+    fetchCoordinates();
   }, []);
+
+  console.log(coorResp);
 
   const placeFeature = (image, nameId, x, y) => {
     const container = document.getElementById('imgContainer');

@@ -1,5 +1,7 @@
 import * as faceapi from 'face-api.js';
 
+let coordinates = {};
+
 const getOverlayValues = (landmarks) => {
   const nose = landmarks.getNose();
   const mouth = landmarks.getMouth();
@@ -25,7 +27,7 @@ const getOverlayValues = (landmarks) => {
 
   const rightEyeBrowLeft = rightEyeBrow[0];
 
-  return {
+  coordinates = {
     mouth: {
       mouthMiddle: mouthMiddle - 25,
       mouthTop: mouthTop.y - 25,
@@ -52,6 +54,7 @@ const getOverlayValues = (landmarks) => {
       rightEyeBrowTop: rightEyeBrowLeft.y - 35,
     },
   };
+  return coordinates;
 };
 
 export async function maskify() {
@@ -71,7 +74,6 @@ export async function maskify() {
     const detection = await faceapi
       .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
       .withFaceLandmarks(true);
-    console.log(detection);
     if (!detection) {
       return;
     }
@@ -80,7 +82,7 @@ export async function maskify() {
     const overlayValues = getOverlayValues(detection.landmarks);
 
     console.log(overlayValues);
-    return overlayValues;
+    return coordinates;
   };
 
   // To avoid CORS issues we create a cross-origin-friendly copy of the image.
