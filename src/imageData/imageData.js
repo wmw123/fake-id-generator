@@ -35,10 +35,7 @@ import mouth4 from "../images/mouth/mouth4.png";
 import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
-<<<<<<< HEAD
 import { selectCoordinates } from "../store/photo/selectors";
-
-const coordinates = useSelector(selectCoordinates);
 
 // const coordinates = {
 //   leftEye: { leftEyeX: 77.75672362583117, leftEyeY: 356.3428393066931 },
@@ -55,17 +52,6 @@ const coordinates = useSelector(selectCoordinates);
 //   },
 // };
 
-const {
-  leftEye,
-  leftEyeBrow,
-  rightEye,
-  rightEyeBrow,
-  nose,
-  mouth,
-} = coordinates;
-
-=======
->>>>>>> bf4d240b3ce792d35ce7005a8bf684aa5bdaf819
 export const leftEyeData = {
   name: "leftEye",
   // position: {
