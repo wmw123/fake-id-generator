@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-import React from "react";
-import { useDispatch } from "react-redux";
-import * as faceapi from "face-api.js";
-import { addCoordinates } from "../store/photo/actions";
-=======
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as faceapi from "face-api.js";
 import { addCoordinates } from "../store/photo/actions";
 import { useHistory } from "react-router-dom";
->>>>>>> bf4d240b3ce792d35ce7005a8bf684aa5bdaf819
 
 export default function MaskifyComponent() {
   const history = useHistory();
@@ -136,7 +129,7 @@ export default function MaskifyComponent() {
         .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks(true);
       if (!detection) {
-        setLoading('failed');
+        setLoading("failed");
         return;
       }
 
@@ -146,7 +139,7 @@ export default function MaskifyComponent() {
       console.log(overlayValues);
       dispatch(addCoordinates(overlayValues));
       setLoading(false);
-      history.push('/photoeditor');
+      history.push("/photoeditor");
     };
 
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
