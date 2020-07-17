@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Sriracha", cursive;
+  font-family: 'Sriracha', cursive;
   color: #00728f;
 }
 
@@ -24,8 +24,8 @@ select:focus {
 }
 
 .passport__page--2 {
-  width: 33rem;
-  height: 23rem;
+  width: 38rem;
+  height: 27rem;
   border: 2px solid #4cc3e0;
   background-color: #83d0e4;
   border-bottom-left-radius: 10px;
@@ -40,18 +40,19 @@ select:focus {
 }
 
 .header select {
-  margin: auto;
-  width: 31rem;
+  margin-top: 1.5rem;
+  width: 36rem;
 }
 
 .input-wrapper {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-around;
 }
 
 .picture {
-  width: 175px;
-  height: 225px;
+  width: 207px;
+  height: 265px;
   margin-top: 2rem;
   border-radius: 4px;
   border: 2px solid #4cc3e0;
@@ -86,8 +87,8 @@ select:focus {
 }
 
 .passport__page--2-rotate {
-  width: 33rem;
-  height: 23rem;
+  width: 38rem;
+  height: 27rem;
   border: 2px solid #4cc3e0;
   background-color: #83d0e4;
   border-bottom-left-radius: 10px;
@@ -108,7 +109,7 @@ figure {
 }
 
 figure.front {
-  background: url("../img/world.png");
+  background: url('../img/world.png');
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(90deg);
@@ -117,17 +118,31 @@ figure.front {
 /* BUTTONS */
 .btn-wrapper {
   position: absolute;
-  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  left: 0.5rem;
+  top: 7rem;
 }
 
 button {
   width: 8rem;
   padding: 0.5rem;
-  margin: 2rem 1rem;
+  margin: 0.5rem;
+  -webkit-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 4px 2px 5px 0px rgba(0, 0, 0, 0.6);
+}
+
+button:active {
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.6);
 }
 
 .nav-btn {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  top: 0.5rem;
+  left: 0.5rem;
 }
