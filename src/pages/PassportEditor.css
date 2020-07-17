@@ -1,12 +1,11 @@
 .passport-container {
   width: 100vw;
   height: 100vh;
-  background-color: #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Sriracha', cursive;
+  font-family: "Sriracha", cursive;
   color: #00728f;
 }
 
@@ -109,7 +108,7 @@ figure {
 }
 
 figure.front {
-  background: url('../img/world.png');
+  background: url("../img/world.png");
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(90deg);

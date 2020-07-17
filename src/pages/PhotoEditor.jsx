@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import mergeImages from "merge-images";
 import "./attributes.css";
 import "./styles.css";
+import "./PassportEditor.css";
 
 import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
@@ -17,7 +18,7 @@ import {
   rightEyebrowData,
   noseData,
   mouthData,
-} from '../imageData/imageData';
+} from "../imageData/imageData";
 
 // import { fetchNetWeights } from 'face-api.js';
 
@@ -30,7 +31,7 @@ export default function PhotoEditor() {
   console.log("coordinates:", coordinates);
 
   const [imgArray, set_imgArray] = useState([
-    { name: 'portrait', src: portrait },
+    { name: "portrait", src: portrait },
   ]);
 
   const placeFeature = (image, nameId) => {
@@ -42,7 +43,7 @@ export default function PhotoEditor() {
       const l = portrait.offsetLeft;
       const t = portrait.offsetTop;
 
-      const newFeature = document.createElement('img');
+      const newFeature = document.createElement("img");
 
       const singleFeature = coordinates.find((feature) => {
         return feature.name === nameId;
@@ -51,8 +52,8 @@ export default function PhotoEditor() {
       console.log(singleFeature);
 
       // use dynamic "feature" argument here
-      newFeature.setAttribute('src', image);
-      newFeature.setAttribute('id', nameId);
+      newFeature.setAttribute("src", image);
+      newFeature.setAttribute("id", nameId);
       // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
@@ -63,7 +64,7 @@ export default function PhotoEditor() {
       // newFeature.style.top = singleFeature.position.y + "px";
       newFeature.style.position = "absolute";
 
-      if (image === 'empty') {
+      if (image === "empty") {
         if (oldFeature) {
           container.removeChild(oldFeature);
         }
@@ -73,7 +74,7 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray.splice(index);
         }
-        console.log('removed', 'index: ', index);
+        console.log("removed", "index: ", index);
       } else if (oldFeature) {
         container.replaceChild(newFeature, oldFeature);
         const index = imgArray.findIndex((img) => {
@@ -82,7 +83,7 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray[index] = { name: nameId, src: image };
         }
-        console.log('replaced', 'index:', index);
+        console.log("replaced", "index:", index);
       } else {
         container.appendChild(newFeature);
         set_imgArray([...imgArray, { name: nameId, src: image }]);
@@ -93,7 +94,7 @@ export default function PhotoEditor() {
 
   const dropDownCreator = (featureData) => {
     return (
-      <div style={{ width: '100px' }}>
+      <div style={{ width: "100px" }}>
         <Select
           options={featureData.featureArray}
           autosize={true}
@@ -108,41 +109,53 @@ export default function PhotoEditor() {
   const createMergedPhoto = () => {
     mergeImages(imgArray).then(
       (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
-      history.push('/passporteditor')
+      history.push("/passporteditor")
     );
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>PhotoEditor</h1>
       <div id="imgContainer">
         <img
           id="portraitImage"
           src={portrait}
-          style={{ position: 'relative' }}
-          alt={''}
+          style={{ position: "relative" }}
+          alt={""}
         />
       </div>
       {portrait ? (
-        <>
-          left eyebrow
-          {dropDownCreator(leftEyebrowData)}
-          left eye
-          {dropDownCreator(leftEyeData)}
-          right eyebrow
-          {dropDownCreator(rightEyebrowData)}
-          right eye
-          {dropDownCreator(rightEyeData)}
-          nose
-          {dropDownCreator(noseData)}
-          mouth
-          {dropDownCreator(mouthData)}
+        <div className="button-wrapper">
+          <div className="select-item">
+            left eyebrow
+            {dropDownCreator(leftEyebrowData)}
+          </div>
+          <div className="select-item">
+            left eye
+            {dropDownCreator(leftEyeData)}
+          </div>
+          <div className="select-item">
+            right eyebrow
+            {dropDownCreator(rightEyebrowData)}
+          </div>
+          <div className="select-item">
+            right eye
+            {dropDownCreator(rightEyeData)}
+          </div>
+          <div className="select-item">
+            nose
+            {dropDownCreator(noseData)}
+          </div>
+          <div className="select-item">
+            mouth
+            {dropDownCreator(mouthData)}
+          </div>
           <button onClick={createMergedPhoto}>Save photo!</button>
-        </>
+        </div>
       ) : (
         <button
           onClick={() => {
-            history.push('/');
+            history.push("/");
           }}
         >
           Take a photo first!
