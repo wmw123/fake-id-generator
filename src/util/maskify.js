@@ -1,7 +1,5 @@
 import * as faceapi from 'face-api.js';
 
-let coordinates = {};
-
 const getOverlayValues = (landmarks) => {
   const nose = landmarks.getNose();
   const mouth = landmarks.getMouth();
@@ -10,48 +8,30 @@ const getOverlayValues = (landmarks) => {
   const leftEyeBrow = landmarks.getLeftEyeBrow();
   const rightEyeBrow = landmarks.getRightEyeBrow();
 
-  const mouthLeft = mouth[0];
-  const mouthRight = mouth[6];
-  const mouthMiddle = (mouthLeft.x + mouthRight.x) / 2;
-  const mouthTop = mouth[17];
-  const mouthScale = (mouthRight - mouthLeft) / 50;
-
-  const noseBottom = nose[6];
-  const noseMiddle = nose[0];
-
-  const leftEyeLeft = leftEye[0];
-
-  const rightEyeLeft = rightEye[0];
-
-  const leftEyeBrowLeft = leftEyeBrow[0];
-
-  const rightEyeBrowLeft = rightEyeBrow[0];
-
-  coordinates = {
+  const coordinates = {
     mouth: {
-      mouthMiddle: mouthMiddle - 25,
-      mouthTop: mouthTop.y - 25,
-      mouthScale: mouthScale,
+      mouthX: (mouth[0].x + mouth[6].x) / 2 - 25,
+      mouthY: mouth[17].y - 25,
     },
     nose: {
-      noseBottom: noseBottom.y - 50,
-      noseMiddle: noseMiddle.x - 25,
+      noseX: nose[0].x - 25,
+      noseY: nose[6].y - 50,
     },
     leftEye: {
-      leftEyeLeft: leftEyeLeft.x - 15,
-      leftEyeTop: leftEyeLeft.y - 25,
+      leftEyeX: leftEye[0].x - 15,
+      leftEyeY: leftEye[0].y - 25,
     },
     rightEye: {
-      rightEyeLeft: rightEyeLeft.x - 15,
-      rightEyeTop: rightEyeLeft.y - 25,
+      rightEyeX: rightEye[0].x - 15,
+      rightEyeY: rightEye[0].y - 25,
     },
     leftEyeBrow: {
-      leftEyeBrowLeft: leftEyeBrowLeft.x,
-      leftEyeBrowTop: leftEyeBrowLeft.y - 45,
+      leftEyeBrowX: leftEyeBrow[0].x,
+      leftEyeBrowY: leftEyeBrow[0].y - 45,
     },
     rightEyeBrow: {
-      rightEyeBrowLeft: rightEyeBrowLeft.x,
-      rightEyeBrowTop: rightEyeBrowLeft.y - 35,
+      rightEyeBrowX: rightEyeBrow[0].x,
+      rightEyeBrowY: rightEyeBrow[0].y - 35,
     },
   };
   return coordinates;
