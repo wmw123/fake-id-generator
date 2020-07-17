@@ -62,29 +62,30 @@ export async function maskify() {
   ]).catch((error) => {
     console.error(error);
   });
-
   console.log('models loaded');
 
-  // wv: api looks for the html elemelent containing the image
-  const items = document.querySelectorAll('.itemWithImg');
+  // wv: api looks for the html elemelent with the id 'portraitImage'
+  const originalImage = document.getElementById('portraitImage');
 
-  // wv: it grabs that image
-  items.forEach(async (item) => {
-    const originalImage = item.querySelector('img');
+  const handleImage = (oldImage, newImage) => async () => {
+    const detection = await faceapi
+      .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
+      .withFaceLandmarks(true);
+    console.log(detection);
+    if (!detection) {
+      return;
+    }
 
-    const handleImage = (oldImage, newImage) => async () => {
-      const detection = await faceapi
-        .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks(true);
-      console.log(detection);
-      if (!detection) {
-        return;
-      }
+    // wv: GetOverLayValues will generate the coordinates for the image with id 'portraitImage'
+    const overlayValues = getOverlayValues(detection.landmarks);
 
-      // wv: GetOverLayValues will generate the coordinates
-      const overlayValues = getOverlayValues(detection.landmarks);
+    console.log(overlayValues);
+    return overlayValues;
+  };
 
-      return overlayValues;
-    };
-  });
+  // To avoid CORS issues we create a cross-origin-friendly copy of the image.
+  const image = new Image();
+  image.crossOrigin = 'Anonymous';
+  image.addEventListener('load', handleImage(originalImage, image));
+  image.src = originalImage.src;
 }

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import Select from "react-select";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import mergeImages from "merge-images";
-import "./attributes.css";
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import mergeImages from 'merge-images';
+import { maskify } from '../util/maskify';
+import './attributes.css';
 
-import { selectImgSrc } from "../store/photo/selectors";
-import { addMergedPhoto } from "../store/photo/actions";
+import { selectImgSrc } from '../store/photo/selectors';
+import { addMergedPhoto } from '../store/photo/actions';
 
 // import portrait from "../images/portrait.jpg";
 import {
@@ -16,9 +17,9 @@ import {
   rightEyebrowData,
   noseData,
   mouthData,
-} from "../imageData/imageData";
+} from '../imageData/imageData';
 
-import { fetchNetWeights } from "face-api.js";
+import { fetchNetWeights } from 'face-api.js';
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
@@ -26,12 +27,16 @@ export default function PhotoEditor() {
   const portrait = useSelector(selectImgSrc);
 
   const [imgArray, set_imgArray] = useState([
-    { name: "portrait", src: portrait },
+    { name: 'portrait', src: portrait },
   ]);
 
+  useEffect(() => {
+    maskify();
+  }, []);
+
   const placeFeature = (image, nameId, x, y) => {
-    const container = document.getElementById("imgContainer");
-    const portrait = document.getElementById("portraitImage");
+    const container = document.getElementById('imgContainer');
+    const portrait = document.getElementById('portraitImage');
     const oldFeature = document.getElementById(nameId);
     if (portrait) {
       const l = portrait.offsetLeft;
@@ -39,19 +44,19 @@ export default function PhotoEditor() {
       const w = portrait.width;
       const h = portrait.height;
 
-      const newFeature = document.createElement("img");
+      const newFeature = document.createElement('img');
 
       // use dynamic "feature" argument here
-      newFeature.setAttribute("src", image);
-      newFeature.setAttribute("id", nameId);
+      newFeature.setAttribute('src', image);
+      newFeature.setAttribute('id', nameId);
       // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
-      newFeature.style.top = t + y + "px";
-      newFeature.style.left = l + x + "px";
-      newFeature.style.position = "absolute";
+      newFeature.style.top = t + y + 'px';
+      newFeature.style.left = l + x + 'px';
+      newFeature.style.position = 'absolute';
 
-      if (image === "empty") {
+      if (image === 'empty') {
         if (oldFeature) {
           container.removeChild(oldFeature);
         }
@@ -61,7 +66,7 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray.splice(index);
         }
-        console.log("removed", "index: ", index);
+        console.log('removed', 'index: ', index);
       } else if (oldFeature) {
         container.replaceChild(newFeature, oldFeature);
         const index = imgArray.findIndex((img) => {
@@ -70,18 +75,18 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray[index] = { name: nameId, src: image, x, y };
         }
-        console.log("replaced", "index:", index);
+        console.log('replaced', 'index:', index);
       } else {
         container.appendChild(newFeature);
         set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
-        console.log("added");
+        console.log('added');
       }
     }
   };
 
   const dropDownCreator = (featureData) => {
     return (
-      <div style={{ width: "100px" }}>
+      <div style={{ width: '100px' }}>
         <Select
           options={featureData.featureArray}
           autosize={true}
@@ -101,7 +106,7 @@ export default function PhotoEditor() {
   const createMergedPhoto = () => {
     mergeImages(imgArray).then(
       (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
-      history.push("/passporteditor")
+      history.push('/passporteditor')
     );
   };
 
@@ -112,8 +117,8 @@ export default function PhotoEditor() {
         <img
           id="portraitImage"
           src={portrait}
-          style={{ position: "relative" }}
-          alt={""}
+          style={{ position: 'relative' }}
+          alt={''}
         />
       </div>
       {portrait ? (
@@ -135,7 +140,7 @@ export default function PhotoEditor() {
       ) : (
         <button
           onClick={() => {
-            history.push("/");
+            history.push('/');
           }}
         >
           Take a photo first!
