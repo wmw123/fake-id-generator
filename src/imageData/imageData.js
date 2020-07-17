@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import leftEye1 from "../images/leftEye/leftEye1.png";
 import leftEye2 from "../images/leftEye/leftEye2.png";
