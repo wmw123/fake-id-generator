@@ -35,29 +35,8 @@ import mouth4 from "../images/mouth/mouth4.png";
 import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
-import { selectCoordinates } from "../store/photo/selectors";
-
-// const coordinates = {
-//   leftEye: { leftEyeX: 77.75672362583117, leftEyeY: 356.3428393066931 },
-//   leftEyeBrow: {
-//     leftEyeBrowX: 78.06301472919421,
-//     leftEyeBrowY: 319.12969823042636,
-//   },
-//   mouth: { mouthX: 114.8838201596065, mouthY: 436.8928474695492 },
-//   nose: { noseX: 111.5116665198131, noseY: 382.28095962713246 },
-//   rightEye: { rightEyeX: 149.84724961059527, rightEyeY: 356.4197130561877 },
-//   rightEyeBrow: {
-//     rightEyeBrowX: 159.16859112518267,
-//     rightEyeBrowY: 320.5470429421473,
-//   },
-// };
-
 export const leftEyeData = {
   name: "leftEye",
-  // position: {
-  //   x: null,
-  //   y: null,
-  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -97,10 +76,6 @@ export const leftEyeData = {
 
 export const leftEyebrowData = {
   name: "leftEyebrow",
-  // position: {
-  //   x: null,
-  //   y: null,
-  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -148,10 +123,6 @@ export const leftEyebrowData = {
 
 export const rightEyeData = {
   name: "rightEye",
-  // position: {
-  //   x: null,
-  //   y: null,
-  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -191,10 +162,6 @@ export const rightEyeData = {
 
 export const rightEyebrowData = {
   name: "rightEyebrow",
-  // position: {
-  //   x: null,
-  //   y: null,
-  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -242,7 +209,6 @@ export const rightEyebrowData = {
 
 export const noseData = {
   name: "nose",
-  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -282,7 +248,6 @@ export const noseData = {
 
 export const mouthData = {
   name: "mouth",
-  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
