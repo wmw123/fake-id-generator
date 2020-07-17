@@ -113,7 +113,7 @@ export default function PhotoEditor() {
 
   const createMergedPhoto = () => {
     mergeImages(imgArray).then(
-      (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
+      (b64) => dispatch(addMergedPhoto(b64)),
       history.push("/passporteditor")
     );
   };
