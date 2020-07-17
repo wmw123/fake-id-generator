@@ -6,7 +6,7 @@ import mergeImages from "merge-images";
 import MaskifyComponent from "../util/MaskifyComponent";
 import "./attributes.css";
 
-import { selectImgSrc } from "../store/photo/selectors";
+import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
 
 // import portrait from "../images/portrait.jpg";
@@ -25,6 +25,7 @@ export default function PhotoEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
   const portrait = useSelector(selectImgSrc);
+  const coordinates = useSelector(selectCoordinates);
 
   const [imgArray, set_imgArray] = useState([
     { name: "portrait", src: portrait },

@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import * as faceapi from 'face-api.js';
-import { addCoordinates } from '../store/photo/actions';
+import React from "react";
+import { useDispatch } from "react-redux";
+import * as faceapi from "face-api.js";
+import { addCoordinates } from "../store/photo/actions";
 
 export default function MaskifyComponent() {
   const dispatch = useDispatch();
@@ -44,17 +44,17 @@ export default function MaskifyComponent() {
   };
 
   const maskify = async () => {
-    console.log('Maskify starting...');
+    console.log("Maskify starting...");
     await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-      faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models'),
+      faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+      faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models"),
     ]).catch((error) => {
       console.error(error);
     });
-    console.log('models loaded');
+    console.log("models loaded");
 
     // wv: api looks for the html elemelent with the id 'portraitImage'
-    const originalImage = document.getElementById('capturedImg');
+    const originalImage = document.getElementById("capturedImg");
 
     const handleImage = (oldImage, newImage) => async () => {
       const detection = await faceapi
@@ -74,8 +74,8 @@ export default function MaskifyComponent() {
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
     // wv: Eventlistener triggers the handleImage-function
     const image = new Image();
-    image.crossOrigin = 'Anonymous';
-    image.addEventListener('load', handleImage(originalImage, image));
+    image.crossOrigin = "Anonymous";
+    image.addEventListener("load", handleImage(originalImage, image));
     image.src = originalImage.src;
   };
 

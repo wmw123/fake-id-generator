@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import leftEye1 from "../images/leftEye/leftEye1.png";
 import leftEye2 from "../images/leftEye/leftEye2.png";
@@ -34,24 +35,24 @@ import mouth4 from "../images/mouth/mouth4.png";
 import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
-// import { selectCoordinates } from "../store/photo/selectors";
+import { selectCoordinates } from "../store/photo/selectors";
 
-// const coordinates = useSelector(selectCoordinates);
+const coordinates = useSelector(selectCoordinates);
 
-const coordinates = {
-  leftEye: { leftEyeX: 77.75672362583117, leftEyeY: 356.3428393066931 },
-  leftEyeBrow: {
-    leftEyeBrowX: 78.06301472919421,
-    leftEyeBrowY: 319.12969823042636,
-  },
-  mouth: { mouthX: 114.8838201596065, mouthY: 436.8928474695492 },
-  nose: { noseX: 111.5116665198131, noseY: 382.28095962713246 },
-  rightEye: { rightEyeX: 149.84724961059527, rightEyeY: 356.4197130561877 },
-  rightEyeBrow: {
-    rightEyeBrowX: 159.16859112518267,
-    rightEyeBrowY: 320.5470429421473,
-  },
-};
+// const coordinates = {
+//   leftEye: { leftEyeX: 77.75672362583117, leftEyeY: 356.3428393066931 },
+//   leftEyeBrow: {
+//     leftEyeBrowX: 78.06301472919421,
+//     leftEyeBrowY: 319.12969823042636,
+//   },
+//   mouth: { mouthX: 114.8838201596065, mouthY: 436.8928474695492 },
+//   nose: { noseX: 111.5116665198131, noseY: 382.28095962713246 },
+//   rightEye: { rightEyeX: 149.84724961059527, rightEyeY: 356.4197130561877 },
+//   rightEyeBrow: {
+//     rightEyeBrowX: 159.16859112518267,
+//     rightEyeBrowY: 320.5470429421473,
+//   },
+// };
 
 const {
   leftEye,
