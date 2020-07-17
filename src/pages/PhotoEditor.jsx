@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import mergeImages from "merge-images";
 import "./attributes.css";
 import "./styles.css";
+import "./PassportEditor.css";
 
 import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
@@ -126,7 +127,7 @@ export default function PhotoEditor() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>PhotoEditor</h1>
       <div id="imgContainer">
         <img
@@ -137,21 +138,33 @@ export default function PhotoEditor() {
         />
       </div>
       {portrait ? (
-        <>
-          left eyebrow
-          {dropDownCreator(leftEyebrowData)}
-          left eye
-          {dropDownCreator(leftEyeData)}
-          right eyebrow
-          {dropDownCreator(rightEyebrowData)}
-          right eye
-          {dropDownCreator(rightEyeData)}
-          nose
-          {dropDownCreator(noseData)}
-          mouth
-          {dropDownCreator(mouthData)}
+        <div className="button-wrapper">
+          <div className="select-item">
+            left eyebrow
+            {dropDownCreator(leftEyebrowData)}
+          </div>
+          <div className="select-item">
+            left eye
+            {dropDownCreator(leftEyeData)}
+          </div>
+          <div className="select-item">
+            right eyebrow
+            {dropDownCreator(rightEyebrowData)}
+          </div>
+          <div className="select-item">
+            right eye
+            {dropDownCreator(rightEyeData)}
+          </div>
+          <div className="select-item">
+            nose
+            {dropDownCreator(noseData)}
+          </div>
+          <div className="select-item">
+            mouth
+            {dropDownCreator(mouthData)}
+          </div>
           <button onClick={createMergedPhoto}>Save photo!</button>
-        </>
+        </div>
       ) : (
         <button
           onClick={() => {
