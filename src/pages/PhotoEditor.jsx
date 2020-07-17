@@ -15,7 +15,7 @@ import {
   rightEyebrowData,
   noseData,
   mouthData,
-} from "../imageData/imageData";
+} from '../imageData/imageData';
 
 // import { fetchNetWeights } from 'face-api.js';
 
@@ -28,12 +28,8 @@ export default function PhotoEditor() {
   console.log("coordinates:", coordinates);
 
   const [imgArray, set_imgArray] = useState([
-    { name: "portrait", src: portrait },
+    { name: 'portrait', src: portrait },
   ]);
-
-  // useEffect(() => {
-  //   maskify();
-  // }, []);
 
   const placeFeature = (image, nameId) => {
     console.log("FEATURE:", nameId);
@@ -44,7 +40,7 @@ export default function PhotoEditor() {
       const l = portrait.offsetLeft;
       const t = portrait.offsetTop;
 
-      const newFeature = document.createElement("img");
+      const newFeature = document.createElement('img');
 
       const singleFeature = coordinates.find((feature) => {
         return feature.name === nameId;
@@ -53,18 +49,19 @@ export default function PhotoEditor() {
       console.log(singleFeature);
 
       // use dynamic "feature" argument here
-      newFeature.setAttribute("src", image);
-      newFeature.setAttribute("id", nameId);
+      newFeature.setAttribute('src', image);
+      newFeature.setAttribute('id', nameId);
       // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
+
       newFeature.style.left = singleFeature.position.x + l + "px";
       newFeature.style.top = singleFeature.position.y + t + "px";
       // newFeature.style.left = singleFeature.position.x + "px";
       // newFeature.style.top = singleFeature.position.y + "px";
       newFeature.style.position = "absolute";
 
-      if (image === "empty") {
+      if (image === 'empty') {
         if (oldFeature) {
           container.removeChild(oldFeature);
         }
@@ -74,7 +71,7 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray.splice(index);
         }
-        console.log("removed", "index: ", index);
+        console.log('removed', 'index: ', index);
       } else if (oldFeature) {
         container.replaceChild(newFeature, oldFeature);
         const index = imgArray.findIndex((img) => {
@@ -83,7 +80,7 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray[index] = { name: nameId, src: image };
         }
-        console.log("replaced", "index:", index);
+        console.log('replaced', 'index:', index);
       } else {
         container.appendChild(newFeature);
         set_imgArray([...imgArray, { name: nameId, src: image }]);
@@ -94,7 +91,7 @@ export default function PhotoEditor() {
 
   const dropDownCreator = (featureData) => {
     return (
-      <div style={{ width: "100px" }}>
+      <div style={{ width: '100px' }}>
         <Select
           options={featureData.featureArray}
           autosize={true}
@@ -109,20 +106,19 @@ export default function PhotoEditor() {
   const createMergedPhoto = () => {
     mergeImages(imgArray).then(
       (b64) => (console.log(typeof b64), dispatch(addMergedPhoto(b64))),
-      history.push("/passporteditor")
+      history.push('/passporteditor')
     );
   };
 
   return (
     <>
       <div>PhotoEditor</div>
-      {/* <MaskifyComponent /> */}
       <div id="imgContainer">
         <img
           id="portraitImage"
           src={portrait}
-          style={{ position: "relative" }}
-          alt={""}
+          style={{ position: 'relative' }}
+          alt={''}
         />
       </div>
       {portrait ? (
@@ -144,7 +140,7 @@ export default function PhotoEditor() {
       ) : (
         <button
           onClick={() => {
-            history.push("/");
+            history.push('/');
           }}
         >
           Take a photo first!

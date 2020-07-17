@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as faceapi from "face-api.js";
 import { addCoordinates } from "../store/photo/actions";
+import { useHistory } from "react-router-dom";
 
 export default function MaskifyComponent() {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const getOverlayValues = (landmarks) => {
     const nose = landmarks.getNose();
@@ -126,6 +129,7 @@ export default function MaskifyComponent() {
         .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks(true);
       if (!detection) {
+        setLoading('failed');
         return;
       }
 
@@ -134,6 +138,8 @@ export default function MaskifyComponent() {
 
       console.log(overlayValues);
       dispatch(addCoordinates(overlayValues));
+      setLoading(false);
+      history.push('/photoeditor');
     };
 
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
@@ -144,7 +150,18 @@ export default function MaskifyComponent() {
     image.src = originalImage.src;
   };
 
-  maskify();
-
-  return <div>Mask being generated...</div>;
+  if (loading) {
+    maskify();
+  }
+  return (
+    <div>
+      {loading ? (
+        <p>Face detection active...</p>
+      ) : loading === false ? (
+        <p>face detection finished</p>
+      ) : (
+        <p>Face detection failed, please try again</p>
+      )}
+    </div>
+  );
 }
