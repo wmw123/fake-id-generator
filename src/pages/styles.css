@@ -4,6 +4,29 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Sriracha", cursive;
+  font-family: "Sriracha";
   color: #34939e;
+}
+
+.steps {
+  display: flex;
+}
+
+.steps li {
+  flex-direction: column;
+  list-style-type: none;
+  margin: 2rem;
+  color: #9e4f15;
+  font-size: 18px;
+  text-align: center;
+}
+
+.steps img {
+  max-width: 100px;
+  padding: 0.5rem;
+  align-items: center;
+  border-radius: 30px 30px 30px 30px;
+  border: 0px solid #000000;
+  background-color: #9e4f15;
+  color: white;
 }
