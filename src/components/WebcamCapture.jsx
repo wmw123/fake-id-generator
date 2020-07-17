@@ -1,15 +1,13 @@
-import React, { useState, useRef, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import Webcam from 'react-webcam';
-import * as faceapi from 'face-api.js';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addImgSrc } from '../store/photo/actions';
-import MaskifyComponent from '../util/MaskifyComponent';
+import React, { useState, useRef, useCallback } from "react";
+import Webcam from "react-webcam";
+import * as faceapi from "face-api.js";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { addImgSrc } from "../store/photo/actions";
+import MaskifyComponent from "../util/MaskifyComponent";
 
 function WebcamCapture({ addImgSrc }) {
-  const history = useHistory();
-  const [check, setCheck] = useState('✘');
+  const [check, setCheck] = useState("✘");
   const [imageSrc, setImageSrc] = useState(null);
   const [activateFaceDetection, setActivateFaceDetection] = useState(false);
   const webcamRef = useRef(null);
@@ -26,7 +24,7 @@ function WebcamCapture({ addImgSrc }) {
   }, [webcamRef, setImageSrc]);
 
   const uploadImage = async function uploadAnImage() {
-    const imgFile = document.getElementById('myFileUpload').files[0];
+    const imgFile = document.getElementById("myFileUpload").files[0];
     const img = await faceapi.bufferToImage(imgFile);
 
     setImageSrc(img.src);
@@ -72,7 +70,7 @@ function WebcamCapture({ addImgSrc }) {
                   onClick={() => {
                     addImgSrc(imageSrc);
                     if (imageSrc !== null) {
-                      setCheck('✔');
+                      setCheck("✔");
                       setActivateFaceDetection(true);
                     }
                   }}
