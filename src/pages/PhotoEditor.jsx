@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import mergeImages from 'merge-images';
-import './attributes.css';
+import React, { useState } from "react";
+import Select from "react-select";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import mergeImages from "merge-images";
 
-import { selectImgSrc } from '../store/photo/selectors';
-import { addMergedPhoto } from '../store/photo/actions';
+import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
+import { addMergedPhoto } from "../store/photo/actions";
 
 // import portrait from "../images/portrait.jpg";
 import {
@@ -24,27 +23,30 @@ export default function PhotoEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
   const portrait = useSelector(selectImgSrc);
+  const coordinates = useSelector(selectCoordinates);
+
+  console.log("coordinates:", coordinates);
 
   const [imgArray, set_imgArray] = useState([
     { name: 'portrait', src: portrait },
   ]);
 
-  // useEffect(() => {
-  //   maskify();
-  // }, []);
-
-  const placeFeature = (image, nameId, x, y) => {
-    console.log('FEATURE:', nameId, x, y);
-    const container = document.getElementById('imgContainer');
-    const portrait = document.getElementById('portraitImage');
+  const placeFeature = (image, nameId) => {
+    console.log("FEATURE:", nameId);
+    const container = document.getElementById("imgContainer");
+    const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(nameId);
     if (portrait) {
       const l = portrait.offsetLeft;
       const t = portrait.offsetTop;
-      const w = portrait.width;
-      const h = portrait.height;
 
       const newFeature = document.createElement('img');
+
+      const singleFeature = coordinates.find((feature) => {
+        return feature.name === nameId;
+      });
+
+      console.log(singleFeature);
 
       // use dynamic "feature" argument here
       newFeature.setAttribute('src', image);
@@ -52,9 +54,12 @@ export default function PhotoEditor() {
       // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
-      newFeature.style.top = y + 'px';
-      newFeature.style.left = x + 'px';
-      newFeature.style.position = 'absolute';
+
+      newFeature.style.left = singleFeature.position.x + l + "px";
+      newFeature.style.top = singleFeature.position.y + t + "px";
+      // newFeature.style.left = singleFeature.position.x + "px";
+      // newFeature.style.top = singleFeature.position.y + "px";
+      newFeature.style.position = "absolute";
 
       if (image === 'empty') {
         if (oldFeature) {
@@ -73,13 +78,13 @@ export default function PhotoEditor() {
           return img.name === nameId;
         });
         if (index !== -1) {
-          imgArray[index] = { name: nameId, src: image, x, y };
+          imgArray[index] = { name: nameId, src: image };
         }
         console.log('replaced', 'index:', index);
       } else {
         container.appendChild(newFeature);
-        set_imgArray([...imgArray, { name: nameId, src: image, x, y }]);
-        console.log('added');
+        set_imgArray([...imgArray, { name: nameId, src: image }]);
+        console.log("added");
       }
     }
   };
@@ -91,12 +96,7 @@ export default function PhotoEditor() {
           options={featureData.featureArray}
           autosize={true}
           onChange={(event) => {
-            placeFeature(
-              event.value,
-              featureData.name,
-              featureData.coordinates.x,
-              featureData.coordinates.y
-            );
+            placeFeature(event.value, featureData.name);
           }}
         />
       </div>
