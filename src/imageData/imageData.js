@@ -54,10 +54,10 @@ import { selectCoordinates } from "../store/photo/selectors";
 
 export const leftEyeData = {
   name: "leftEye",
-  position: {
-    x: null,
-    y: null,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -97,10 +97,10 @@ export const leftEyeData = {
 
 export const leftEyebrowData = {
   name: "leftEyebrow",
-  position: {
-    x: null,
-    y: null,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -148,10 +148,10 @@ export const leftEyebrowData = {
 
 export const rightEyeData = {
   name: "rightEye",
-  position: {
-    x: null,
-    y: null,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -191,10 +191,10 @@ export const rightEyeData = {
 
 export const rightEyebrowData = {
   name: "rightEyebrow",
-  position: {
-    x: null,
-    y: null,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -242,7 +242,7 @@ export const rightEyebrowData = {
 
 export const noseData = {
   name: "nose",
-  position: { x: null, y: null },
+  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -282,7 +282,7 @@ export const noseData = {
 
 export const mouthData = {
   name: "mouth",
-  position: { x: null, y: null },
+  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
