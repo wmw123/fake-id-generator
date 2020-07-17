@@ -1,4 +1,4 @@
-import { photoActionTypes } from './actions';
+import { photoActionTypes } from "./actions";
 
 const initialState = {
   imageSrc: null,
@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
       // console.log("STORED: ", typeof action.payload);
       return { ...state, mergedImage: action.payload };
     case photoActionTypes.ADD_PHOTO_COORDINATES:
+      console.log("SOTRED", action.payload);
       return { ...state, coordinates: action.payload };
     default:
       return state;

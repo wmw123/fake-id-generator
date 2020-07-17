@@ -129,7 +129,7 @@ export default function MaskifyComponent() {
         .detectSingleFace(newImage, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks(true);
       if (!detection) {
-        setLoading('failed');
+        setLoading("failed");
         return;
       }
 
@@ -139,7 +139,7 @@ export default function MaskifyComponent() {
       console.log(overlayValues);
       dispatch(addCoordinates(overlayValues));
       setLoading(false);
-      history.push('/photoeditor');
+      history.push("/photoeditor");
     };
 
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
