@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import mergeImages from 'merge-images';
-import { maskify } from '../util/maskify';
+import MaskifyComponent from '../util/MaskifyComponent';
 import './attributes.css';
 
 import { selectImgSrc } from '../store/photo/selectors';
-import { addMergedPhoto, addCoordinates } from '../store/photo/actions';
+import { addMergedPhoto } from '../store/photo/actions';
 
 // import portrait from "../images/portrait.jpg";
 import {
@@ -19,28 +19,20 @@ import {
   mouthData,
 } from '../imageData/imageData';
 
-import { fetchNetWeights } from 'face-api.js';
+// import { fetchNetWeights } from 'face-api.js';
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
   const history = useHistory();
   const portrait = useSelector(selectImgSrc);
-  const [coorResp, setCoorResp] = useState();
 
   const [imgArray, set_imgArray] = useState([
     { name: 'portrait', src: portrait },
   ]);
 
-  useEffect(() => {
-    async function fetchCoordinates() {
-      const response = await maskify();
-
-      setCoorResp(response);
-    }
-    fetchCoordinates();
-  }, []);
-
-  console.log(coorResp);
+  // useEffect(() => {
+  //   maskify();
+  // }, []);
 
   const placeFeature = (image, nameId, x, y) => {
     const container = document.getElementById('imgContainer');
@@ -121,6 +113,7 @@ export default function PhotoEditor() {
   return (
     <>
       <div>PhotoEditor</div>
+      <MaskifyComponent />
       <div id="imgContainer">
         <img
           id="portraitImage"

@@ -82,7 +82,6 @@ export async function maskify() {
     const overlayValues = getOverlayValues(detection.landmarks);
 
     console.log(overlayValues);
-    return coordinates;
   };
 
   // To avoid CORS issues we create a cross-origin-friendly copy of the image.

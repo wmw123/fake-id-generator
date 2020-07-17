@@ -18,7 +18,6 @@ export const addMergedPhoto = (mergedImage) => (dispatch) => {
 };
 
 export const addCoordinates = (coordinates) => (dispatch) => {
-  console.log('coordinates arrived', coordinates);
   return dispatch({
     type: photoActionTypes.ADD_PHOTO_COORDINATES,
     payload: coordinates,
