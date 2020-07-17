@@ -1,7 +1,7 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import * as faceapi from 'face-api.js';
-import { addCoordinates } from '../store/photo/actions';
+import React from "react";
+import { useDispatch } from "react-redux";
+import * as faceapi from "face-api.js";
+import { addCoordinates } from "../store/photo/actions";
 
 export default function MaskifyComponent() {
   const dispatch = useDispatch();
@@ -14,47 +14,112 @@ export default function MaskifyComponent() {
     const leftEyeBrow = landmarks.getLeftEyeBrow();
     const rightEyeBrow = landmarks.getRightEyeBrow();
 
-    const coordinates = {
-      mouth: {
-        mouthX: (mouth[0].x + mouth[6].x) / 2 - 25,
-        mouthY: mouth[17].y - 25,
+    const coordinates = [
+      {
+        name: "mouth",
+        position: {
+          x: (mouth[0].x + mouth[6].x) / 2 - 25,
+          y: mouth[17].y - 25,
+        },
       },
-      nose: {
-        noseX: nose[0].x - 25,
-        noseY: nose[6].y - 50,
+      {
+        name: "nose",
+        position: {
+          x: nose[0].x - 25,
+          y: nose[6].y - 50,
+        },
       },
-      leftEye: {
-        leftEyeX: leftEye[0].x - 15,
-        leftEyeY: leftEye[0].y - 25,
+      {
+        name: "leftEye",
+        position: {
+          x: leftEye[0].x - 15,
+          y: leftEye[0].y - 25,
+        },
       },
-      rightEye: {
-        rightEyeX: rightEye[0].x - 15,
-        rightEyeY: rightEye[0].y - 25,
+      {
+        name: "rightEye",
+        position: {
+          x: rightEye[0].x - 15,
+          y: rightEye[0].y - 25,
+        },
       },
-      leftEyeBrow: {
-        leftEyeBrowX: leftEyeBrow[0].x,
-        leftEyeBrowY: leftEyeBrow[0].y - 45,
+      {
+        name: "leftEyebrow",
+        position: {
+          x: leftEyeBrow[0].x,
+          y: leftEyeBrow[0].y - 45,
+        },
       },
-      rightEyeBrow: {
-        rightEyeBrowX: rightEyeBrow[0].x,
-        rightEyeBrowY: rightEyeBrow[0].y - 35,
+      {
+        name: "rightEyebrow",
+        position: {
+          x: rightEyeBrow[0].x,
+          y: rightEyeBrow[0].y - 35,
+        },
       },
-    };
+    ];
     return coordinates;
   };
 
+  //   const coordinates = {
+  //     mouth: {
+  //       name: "mouth",
+  //       position: {
+  //         x: (mouth[0].x + mouth[6].x) / 2 - 25,
+  //         y: mouth[17].y - 25,
+  //       },
+  //     },
+  //     nose: {
+  //       name: "nose",
+  //       position: {
+  //         x: nose[0].x - 25,
+  //         y: nose[6].y - 50,
+  //       },
+  //     },
+  //     leftEye: {
+  //       name: "leftEye",
+  //       position: {
+  //         x: leftEye[0].x - 15,
+  //         y: leftEye[0].y - 25,
+  //       },
+  //     },
+  //     rightEye: {
+  //       name: "rightEye",
+  //       position: {
+  //         x: rightEye[0].x - 15,
+  //         y: rightEye[0].y - 25,
+  //       },
+  //     },
+  //     leftEyebrow: {
+  //       name: "leftEyebrow",
+  //       position: {
+  //         x: leftEyeBrow[0].x,
+  //         y: leftEyeBrow[0].y - 45,
+  //       },
+  //     },
+  //     rightEyebrow: {
+  //       name: "leftEyebrow",
+  //       position: {
+  //         rightEyeBrowX: rightEyeBrow[0].x,
+  //         rightEyeBrowY: rightEyeBrow[0].y - 35,
+  //       },
+  //     },
+  //   };
+  //   return coordinates;
+  // };
+
   const maskify = async () => {
-    console.log('Maskify starting...');
+    console.log("Maskify starting...");
     await Promise.all([
-      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-      faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models'),
+      faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+      faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models"),
     ]).catch((error) => {
       console.error(error);
     });
-    console.log('models loaded');
+    console.log("models loaded");
 
     // wv: api looks for the html elemelent with the id 'portraitImage'
-    const originalImage = document.getElementById('capturedImg');
+    const originalImage = document.getElementById("capturedImg");
 
     const handleImage = (oldImage, newImage) => async () => {
       const detection = await faceapi
@@ -74,8 +139,8 @@ export default function MaskifyComponent() {
     // To avoid CORS issues we create a cross-origin-friendly copy of the image.
     // wv: Eventlistener triggers the handleImage-function
     const image = new Image();
-    image.crossOrigin = 'Anonymous';
-    image.addEventListener('load', handleImage(originalImage, image));
+    image.crossOrigin = "Anonymous";
+    image.addEventListener("load", handleImage(originalImage, image));
     image.src = originalImage.src;
   };
 
