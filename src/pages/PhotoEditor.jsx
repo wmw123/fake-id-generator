@@ -9,8 +9,6 @@ import "./PassportEditor.css";
 
 import { selectImgSrc, selectCoordinates } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
-
-// import portrait from "../images/portrait.jpg";
 import {
   leftEyeData,
   leftEyebrowData,
@@ -19,8 +17,6 @@ import {
   noseData,
   mouthData,
 } from "../imageData/imageData";
-
-// import { fetchNetWeights } from 'face-api.js';
 
 export default function PhotoEditor() {
   const dispatch = useDispatch();
@@ -54,14 +50,10 @@ export default function PhotoEditor() {
       // use dynamic "feature" argument here
       newFeature.setAttribute("src", image);
       newFeature.setAttribute("id", nameId);
-      // newFeature.setAttribute("class", "overlays");
 
       // use dynamic "x" and "y" coordinates arguments here
-
       newFeature.style.left = singleFeature.position.x + l + "px";
       newFeature.style.top = singleFeature.position.y + t + "px";
-      // newFeature.style.left = singleFeature.position.x + "px";
-      // newFeature.style.top = singleFeature.position.y + "px";
       newFeature.style.position = "absolute";
 
       if (image === "empty") {
