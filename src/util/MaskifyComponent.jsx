@@ -91,7 +91,7 @@ export default function MaskifyComponent() {
   return (
     <div>
       {loading ? (
-        <p>Face detection active</p>
+        <p>Face detection active...</p>
       ) : loading === false ? (
         <p>face detection finished</p>
       ) : (
