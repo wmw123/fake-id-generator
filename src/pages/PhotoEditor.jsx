@@ -80,12 +80,25 @@ export default function PhotoEditor() {
           return img.name === nameId;
         });
         if (index !== -1) {
-          imgArray[index] = { name: nameId, src: image };
+          imgArray[index] = {
+            name: nameId,
+            src: image,
+            x: singleFeature.position.x,
+            y: singleFeature.position.y,
+          };
         }
         console.log("replaced", "index:", index);
       } else {
         container.appendChild(newFeature);
-        set_imgArray([...imgArray, { name: nameId, src: image }]);
+        set_imgArray([
+          ...imgArray,
+          {
+            name: nameId,
+            src: image,
+            x: singleFeature.position.x,
+            y: singleFeature.position.y,
+          },
+        ]);
         console.log("added");
       }
     }
