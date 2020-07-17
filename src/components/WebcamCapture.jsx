@@ -66,22 +66,24 @@ function WebcamCapture({ addImgSrc }) {
               id="capturedImg"
               alt="a screenshot of your face"
             />
-            {activateFaceDetection ? <MaskifyComponent /> : null}
-            <button
-              onClick={() => {
-                addImgSrc(imageSrc);
-                if (imageSrc !== null) {
-                  setCheck('✔');
-                  setActivateFaceDetection(true);
-                }
-              }}
-            >
-              Save photo
-            </button>
-            {check}
-            <button onClick={() => history.push('/photoeditor')}>
-              Edit your picture
-            </button>
+            {!activateFaceDetection ? (
+              <>
+                <button
+                  onClick={() => {
+                    addImgSrc(imageSrc);
+                    if (imageSrc !== null) {
+                      setCheck('✔');
+                      setActivateFaceDetection(true);
+                    }
+                  }}
+                >
+                  Save photo
+                </button>
+                {check}
+              </>
+            ) : (
+              <MaskifyComponent />
+            )}
           </>
         )}
       </div>
