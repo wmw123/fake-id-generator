@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import mergeImages from "merge-images";
 import MaskifyComponent from "../util/MaskifyComponent";
 import "./attributes.css";
+import "./styles.css";
 
 import { selectImgSrc } from "../store/photo/selectors";
 import { addMergedPhoto } from "../store/photo/actions";
@@ -112,9 +113,8 @@ export default function PhotoEditor() {
   };
 
   return (
-    <>
-      <div>PhotoEditor</div>
-      {/* <MaskifyComponent /> */}
+    <div>
+      <h1>PhotoEditor</h1>
       <div id="imgContainer">
         <img
           id="portraitImage"
@@ -148,6 +148,6 @@ export default function PhotoEditor() {
           Take a photo first!
         </button>
       )}
-    </>
+    </div>
   );
 }

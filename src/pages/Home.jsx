@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
-import WebcamCapture from '../components/WebcamCapture';
+import React, { useState } from "react";
+import WebcamCapture from "../components/WebcamCapture";
+import "./styles.css";
 
 export default function Home() {
   const takePhoto = (e) => {
     e.preventDefault();
 
-    setButton('');
+    setButton("");
   };
 
   const takePhotoButton = <button onClick={takePhoto}>Take a photo</button>;
   const [button, setButton] = useState(takePhotoButton);
 
   const webcam =
-    button === '' ? (
+    button === "" ? (
       <div>
         <WebcamCapture />
       </div>
     ) : (
-      ''
+      ""
     );
 
   return (
     <>
-      <div>
-        <h1>Homepage</h1>
-      </div>
-      <div>
+      <div className="container">
+        <h1>Fake ID Generator</h1>
+        <ul>
+          <li>Step 1</li>
+          <li>Step 2</li>
+          <li>Step 3</li>
+        </ul>
         <div>{button}</div>
         {webcam}
       </div>
