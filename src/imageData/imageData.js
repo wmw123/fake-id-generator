@@ -35,6 +35,7 @@ import mouth4 from "../images/mouth/mouth4.png";
 import mouth5 from "../images/mouth/mouth5.png";
 import mouth6 from "../images/mouth/mouth6.png";
 
+<<<<<<< HEAD
 import { selectCoordinates } from "../store/photo/selectors";
 
 const coordinates = useSelector(selectCoordinates);
@@ -63,12 +64,14 @@ const {
   mouth,
 } = coordinates;
 
+=======
+>>>>>>> bf4d240b3ce792d35ce7005a8bf684aa5bdaf819
 export const leftEyeData = {
   name: "leftEye",
-  coordinates: {
-    x: leftEye.leftEyeX,
-    y: leftEye.leftEyeY,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -108,10 +111,10 @@ export const leftEyeData = {
 
 export const leftEyebrowData = {
   name: "leftEyebrow",
-  coordinates: {
-    x: leftEyeBrow.leftEyeBrowX,
-    y: leftEyeBrow.leftEyeBrowY,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -159,10 +162,10 @@ export const leftEyebrowData = {
 
 export const rightEyeData = {
   name: "rightEye",
-  coordinates: {
-    x: rightEye.rightEyeX,
-    y: rightEye.rightEyeY,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -202,10 +205,10 @@ export const rightEyeData = {
 
 export const rightEyebrowData = {
   name: "rightEyebrow",
-  coordinates: {
-    x: rightEyeBrow.rightEyeBrowX,
-    y: rightEyeBrow.rightEyeBrowY,
-  },
+  // position: {
+  //   x: null,
+  //   y: null,
+  // },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -253,7 +256,7 @@ export const rightEyebrowData = {
 
 export const noseData = {
   name: "nose",
-  coordinates: { x: nose.noseX, y: nose.noseY },
+  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
@@ -293,7 +296,7 @@ export const noseData = {
 
 export const mouthData = {
   name: "mouth",
-  coordinates: { x: mouth.mouthX, y: mouth.mouthY },
+  // position: { x: null, y: null },
   featureArray: [
     { value: "empty", label: <div>---</div> },
     {
