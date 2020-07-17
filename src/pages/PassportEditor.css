@@ -24,8 +24,8 @@ select:focus {
 }
 
 .passport__page--2 {
-  width: 33rem;
-  height: 23rem;
+  width: 38rem;
+  height: 27rem;
   border: 2px solid #4cc3e0;
   background-color: #83d0e4;
   border-bottom-left-radius: 10px;
@@ -40,18 +40,19 @@ select:focus {
 }
 
 .header select {
-  margin: auto;
-  width: 31rem;
+  margin-top: 1.5rem;
+  width: 36rem;
 }
 
 .input-wrapper {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: space-around;
 }
 
 .picture {
-  width: 175px;
-  height: 225px;
+  width: 207px;
+  height: 265px;
   margin-top: 2rem;
   border-radius: 4px;
   border: 2px solid #4cc3e0;
@@ -86,8 +87,8 @@ select:focus {
 }
 
 .passport__page--2-rotate {
-  width: 33rem;
-  height: 23rem;
+  width: 38rem;
+  height: 27rem;
   border: 2px solid #4cc3e0;
   background-color: #83d0e4;
   border-bottom-left-radius: 10px;
