@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Sriracha", cursive;
+  font-family: 'Sriracha', cursive;
   color: #00728f;
 }
 
@@ -108,7 +108,7 @@ figure {
 }
 
 figure.front {
-  background: url("../img/world.png");
+  background: url('../img/world.png');
   background-repeat: no-repeat;
   background-position: center;
   transform: rotate(90deg);
@@ -117,17 +117,22 @@ figure.front {
 /* BUTTONS */
 .btn-wrapper {
   position: absolute;
-  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  left: 1rem;
+  top: 9rem;
 }
 
 button {
   width: 8rem;
   padding: 0.5rem;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem;
 }
 
 .nav-btn {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 1rem;
   left: 1rem;
 }
