@@ -136,7 +136,6 @@ export default function MaskifyComponent() {
       // wv: GetOverLayValues will generate the coordinates for the image with id 'portraitImage'
       const overlayValues = getOverlayValues(detection.landmarks);
 
-      console.log(overlayValues);
       dispatch(addCoordinates(overlayValues));
       setLoading(false);
       history.push("/photoeditor");

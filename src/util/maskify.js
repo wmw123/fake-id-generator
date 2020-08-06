@@ -1,4 +1,4 @@
-import * as faceapi from 'face-api.js';
+import * as faceapi from "face-api.js";
 
 const getOverlayValues = (landmarks) => {
   const nose = landmarks.getNose();
@@ -38,17 +38,17 @@ const getOverlayValues = (landmarks) => {
 };
 
 export async function maskify() {
-  console.log('Maskify starting...');
+  console.log("Maskify starting...");
   await Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-    faceapi.nets.faceLandmark68TinyNet.loadFromUri('/models'),
+    faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+    faceapi.nets.faceLandmark68TinyNet.loadFromUri("/models"),
   ]).catch((error) => {
     console.error(error);
   });
-  console.log('models loaded');
+  console.log("models loaded");
 
   // wv: api looks for the html elemelent with the id 'portraitImage'
-  const originalImage = document.getElementById('portraitImage');
+  const originalImage = document.getElementById("portraitImage");
 
   const handleImage = (oldImage, newImage) => async () => {
     const detection = await faceapi
@@ -60,13 +60,11 @@ export async function maskify() {
 
     // wv: GetOverLayValues will generate the coordinates for the image with id 'portraitImage'
     const overlayValues = getOverlayValues(detection.landmarks);
-
-    console.log(overlayValues);
   };
 
   // To avoid CORS issues we create a cross-origin-friendly copy of the image.
   const image = new Image();
-  image.crossOrigin = 'Anonymous';
-  image.addEventListener('load', handleImage(originalImage, image));
+  image.crossOrigin = "Anonymous";
+  image.addEventListener("load", handleImage(originalImage, image));
   image.src = originalImage.src;
 }
