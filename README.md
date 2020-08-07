@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Screenshot from 2020-08-06 10-36-13](https://user-images.githubusercontent.com/60095327/89510345-ba7ac980-d7d0-11ea-97e0-f270e06d0fa0.png)
 
-## Available Scripts
+## Fake ID Generator | Create a fake ID for your fake trip!
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+[Check out our working version!](https://relaxed-heisenberg-4577a7.netlify.app/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+These times, a taking a fake trip might be more realistic than taking an actual one. For this, we built the Fake ID Generator. Users can take a picture of their face and after a few seconds, the facial features are detected. Users can then edit their face: add gorgeous eyebrows, impressive eyes or sensual lips. After they have edited their picture, a passport is generated, which they can also edit and save on their computer - to prepare for that special trip.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## App demo
 
-### `npm test`
+![1](https://user-images.githubusercontent.com/60095327/89513332-b650ab00-d7d4-11ea-9ae6-a6a86437942a.gif)
+![2](https://user-images.githubusercontent.com/60095327/89513368-c49ec700-d7d4-11ea-98fe-61308d352e51.gif)
+![3](https://user-images.githubusercontent.com/60095327/89513417-d1231f80-d7d4-11ea-8f19-a0eb13ef7f4b.gif)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Used technologies
 
-### `npm run build`
+- React
+- Redux
+- CSS
+- [Face-API](https://github.com/justadudewhohacks/face-api.js)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project goals
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+This project was built as part of the Codaisseur Academy. As a team of three, we worked together to create this app in three and a half days. Within our given theme 'travel', we wanted to work on a challenging and fun project, where we would learn something entirely new: work with a face detection API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Working as a team was a lot of fun and very productive. We would meet a couple of times per day to discuss the project and work with Git branches, pull requests and rebase.

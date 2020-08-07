@@ -24,14 +24,11 @@ export default function PhotoEditor() {
   const portrait = useSelector(selectImgSrc);
   const coordinates = useSelector(selectCoordinates);
 
-  console.log("coordinates:", coordinates);
-
   const [imgArray, set_imgArray] = useState([
     { name: "portrait", src: portrait },
   ]);
 
   const placeFeature = (image, nameId) => {
-    console.log("FEATURE:", nameId);
     const container = document.getElementById("imgContainer");
     const portrait = document.getElementById("portraitImage");
     const oldFeature = document.getElementById(nameId);
@@ -44,8 +41,6 @@ export default function PhotoEditor() {
       const singleFeature = coordinates.find((feature) => {
         return feature.name === nameId;
       });
-
-      console.log(singleFeature);
 
       // use dynamic "feature" argument here
       newFeature.setAttribute("src", image);
@@ -66,7 +61,6 @@ export default function PhotoEditor() {
         if (index !== -1) {
           imgArray.splice(index);
         }
-        console.log("removed", "index: ", index);
       } else if (oldFeature) {
         container.replaceChild(newFeature, oldFeature);
         const index = imgArray.findIndex((img) => {
@@ -80,7 +74,6 @@ export default function PhotoEditor() {
             y: singleFeature.position.y,
           };
         }
-        console.log("replaced", "index:", index);
       } else {
         container.appendChild(newFeature);
         set_imgArray([
@@ -92,7 +85,6 @@ export default function PhotoEditor() {
             y: singleFeature.position.y,
           },
         ]);
-        console.log("added");
       }
     }
   };
